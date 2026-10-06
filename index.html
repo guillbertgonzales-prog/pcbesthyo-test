@@ -78,15 +78,32 @@
     .admin-field-label { display:block; margin-bottom:.4rem; color:#94a3b8; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
     .admin-field { width:100%; background:#0b1329; border:1px solid #172554; border-radius:.8rem; padding:.75rem 1rem; color:#f1f5f9; font-size:.78rem; outline:none; transition:.2s; }
     .admin-field:focus { border-color:#22d3ee; box-shadow:0 0 0 3px rgba(34,211,238,.08); }
+
+</style>
+<style>
+/* Fondos flotantes premium - PC BEST HUANCAYO */
+.floating-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.floating-bg .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.22;mix-blend-mode:screen;animation:floatOrb 16s ease-in-out infinite;}
+.floating-bg .orb:nth-child(1){width:260px;height:260px;left:-70px;top:12%;background:radial-gradient(circle,rgba(34,211,238,.42),transparent 68%);animation-duration:18s;}
+.floating-bg .orb:nth-child(2){width:340px;height:340px;right:-100px;top:28%;background:radial-gradient(circle,rgba(59,130,246,.34),transparent 68%);animation-duration:22s;animation-delay:-5s;}
+.floating-bg .orb:nth-child(3){width:210px;height:210px;left:30%;bottom:-70px;background:radial-gradient(circle,rgba(14,165,233,.28),transparent 68%);animation-duration:20s;animation-delay:-9s;}
+.floating-bg .orb:nth-child(4){width:170px;height:170px;right:25%;top:8%;background:radial-gradient(circle,rgba(125,211,252,.22),transparent 68%);animation-duration:15s;animation-delay:-3s;}
+.floating-bg .particle{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(125,211,252,.72);box-shadow:0 0 14px rgba(34,211,238,.8);animation:drift linear infinite;}
+.floating-bg .particle:nth-child(5){left:8%;top:75%;animation-duration:19s}.floating-bg .particle:nth-child(6){left:18%;top:20%;animation-duration:24s;animation-delay:-8s}.floating-bg .particle:nth-child(7){left:42%;top:70%;animation-duration:21s;animation-delay:-12s}.floating-bg .particle:nth-child(8){left:58%;top:18%;animation-duration:27s;animation-delay:-6s}.floating-bg .particle:nth-child(9){left:76%;top:76%;animation-duration:20s;animation-delay:-4s}.floating-bg .particle:nth-child(10){left:90%;top:42%;animation-duration:25s;animation-delay:-14s}.floating-bg .particle:nth-child(11){left:35%;top:38%;animation-duration:23s;animation-delay:-10s}.floating-bg .particle:nth-child(12){left:68%;top:58%;animation-duration:18s;animation-delay:-2s}
+.floating-bg .line{position:absolute;width:1px;height:180px;background:linear-gradient(to bottom,transparent,rgba(34,211,238,.22),transparent);transform:rotate(35deg);animation:lightSweep 11s linear infinite;}
+.floating-bg .line:nth-child(13){left:12%;top:-50px}.floating-bg .line:nth-child(14){left:48%;top:-70px;animation-delay:-4s}.floating-bg .line:nth-child(15){right:14%;top:-80px;animation-delay:-8s}
+@keyframes floatOrb{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(35px,-45px,0) scale(1.08)}}
+@keyframes drift{0%{transform:translate3d(0,80px,0);opacity:0}15%{opacity:.8}50%{transform:translate3d(35px,-35px,0);opacity:.55}85%{opacity:.8}100%{transform:translate3d(-25px,-140px,0);opacity:0}}
+@keyframes lightSweep{0%{transform:translateY(-120px) rotate(35deg);opacity:0}25%{opacity:1}100%{transform:translateY(110vh) rotate(35deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.floating-bg *{animation:none!important}}
 </style>
 </head>
 <body class="formal-text bg-[#030712] text-slate-100 min-h-screen selection:bg-sky-500 selection:text-white">
-
-    <div id="topStoreBanner" class="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 text-white text-xs font-semibold py-2 px-4 shadow-md relative z-50">
+<div id="topStoreBanner" class="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 text-white text-xs font-semibold py-2 px-4 shadow-md relative z-50">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
             <div class="flex items-center gap-2 justify-center">
                 <i class="fa-solid fa-store text-sky-200 animate-pulse"></i>
-                <span>¡Bienvenidos a <strong>PC Best</strong>! Tienda física autorizada y envíos rápidos a todo el Perú 🚚</span>
+                <span><strong>PCBest Huancayo</strong> · Tecnología, Gaming y Hardware · Envíos rápidos a todo el Perú 🚚</span>
             </div>
             <div class="flex items-center gap-4 justify-center">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-sky-200"></i> Huancayo, Junín</span>
@@ -156,13 +173,13 @@
         <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
             <div>
                 <span class="bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-widest inline-block mb-3">
-                    ⚡ Tecnología de Alto Rendimiento
+                    Tecnología de Alto Rendimiento
                 </span>
                 <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
                     El mejor hardware para tu <span class="bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">PC Gamer o de Trabajo</span>
                 </h1>
                 <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mt-3 font-medium">
-                    Equípate con componentes de alta gama y ofertas exclusivas con garantía a nivel nacional en PC Best.
+                    Tecnología de alta gama, ofertas especiales y garantía a nivel nacional en PC Best Huancayo.
                 </p>
             </div>
 
@@ -677,7 +694,7 @@
 
     <!-- Product Form Modal -->
     <div id="productFormModal" class="fixed inset-0 z-50 bg-[#030712]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl flex flex-col">
             <div class="p-6 border-b border-sky-950 flex items-center justify-between bg-[#030712]">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
@@ -692,13 +709,13 @@
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
-            <form id="productForm" onsubmit="handleProductFormSubmit(event)" class="p-6 space-y-4">
+            <form id="productForm" onsubmit="handleProductFormSubmit(event)" class="p-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <input type="hidden" id="editProductId">
-                <div>
+                <div class="lg:col-start-2 lg:row-start-1">
                     <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Nombre del Producto</label>
                     <input type="text" id="prodName" required placeholder="Ej. AMD Ryzen 7 5700X" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:col-start-2 lg:row-start-2">
                     <div>
                         <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Categoría</label>
                         <select id="prodCategory" onchange="updateSubcategoryDropdownOptions()" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500"></select>
@@ -710,7 +727,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:col-start-2 lg:row-start-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Precio (S/.)</label>
                         <input type="number" step="0.01" id="prodPrice" required placeholder="0.00" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
@@ -720,15 +737,43 @@
                         <input type="number" id="prodStock" required value="10" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">URL Imagen</label>
-                    <input type="url" id="prodImage" placeholder="https://..." class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                <div class="lg:col-start-1 lg:row-start-1 lg:row-span-4 bg-[#030712]/50 rounded-2xl p-1 border border-sky-950/60">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5 px-3 pt-2">Imagen del Producto</label>
+                    <div class="bg-[#030712] border border-sky-950 rounded-2xl p-4 space-y-3">
+                        <input type="hidden" id="prodImage">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <button type="button" id="prodImageUrlBtn" onclick="selectProductImageMode('url')" class="flex items-center justify-center gap-2 bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/40 text-sky-300 rounded-xl px-4 py-3 text-sm font-bold transition-all">
+                                <i class="fa-solid fa-link"></i> Usar enlace
+                            </button>
+                            <button type="button" id="prodImageFileBtn" onclick="selectProductImageMode('file')" class="flex items-center justify-center gap-2 bg-[#0b1329] hover:bg-sky-500/15 border border-sky-950 text-slate-300 rounded-xl px-4 py-3 text-sm font-bold transition-all">
+                                <i class="fa-solid fa-desktop"></i> Desde mi escritorio
+                            </button>
+                        </div>
+                        <div id="prodImageUrlWrap">
+                            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Enlace de imagen</label>
+                            <div class="flex gap-2">
+                                <input type="url" id="prodImageUrl" placeholder="https://ejemplo.com/imagen.jpg" class="flex-1 bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-sky-500" oninput="handleProductImageUrlInput()">
+                                <button type="button" onclick="clearProductImageUrl()" class="bg-[#0b1329] hover:bg-red-500/10 border border-sky-950 text-slate-400 hover:text-red-400 px-3 rounded-xl" title="Limpiar enlace"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                        </div>
+                        <div id="prodImageFileWrap" class="hidden">
+                            <label for="prodImageFile" class="flex items-center justify-center gap-2 w-full cursor-pointer bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 rounded-xl px-4 py-3 text-sm font-bold transition-all">
+                                <i class="fa-solid fa-cloud-arrow-up"></i> Seleccionar imagen desde mi PC
+                            </label>
+                            <input type="file" id="prodImageFile" accept="image/*" class="hidden" onchange="handleProductImageUpload(event)">
+                            <p class="text-[11px] text-slate-500 mt-2">JPG, PNG, WEBP o GIF. Máximo 5 MB.</p>
+                        </div>
+                        <div id="prodImageSourceLabel" class="text-[11px] text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-link"></i> Imagen mediante enlace</div>
+                        <div id="prodImagePreview" class="hidden rounded-xl overflow-hidden border border-sky-950 bg-[#0b1329]">
+                            <img id="prodImagePreviewImg" src="" alt="Vista previa del producto" class="w-full h-40 object-contain">
+                        </div>
+                    </div>
                 </div>
-                <div>
+                <div class="lg:col-start-2 lg:row-start-4">
                     <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Descripción</label>
                     <textarea id="prodDesc" rows="3" placeholder="Especificaciones..." class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500"></textarea>
                 </div>
-                <div class="pt-4 flex gap-3">
+                <div class="lg:col-start-2 lg:row-start-5 pt-1 flex gap-3">
                     <button type="button" onclick="closeProductForm()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1">Cerrar</button>
                     <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1 shadow-lg shadow-sky-500/30">Guardar</button>
                 </div>
@@ -1852,14 +1897,99 @@
                 document.getElementById('prodPrice').value = p.price;
                 document.getElementById('prodStock').value = p.stock;
                 document.getElementById('prodImage').value = p.image || '';
+                document.getElementById('prodImageUrl').value = (p.image && !String(p.image).startsWith('data:')) ? p.image : '';
+                document.getElementById('prodImageFile').value = '';
+                selectProductImageMode((p.image && String(p.image).startsWith('data:')) ? 'file' : 'url');
+                showProductImagePreview(p.image || '');
                 document.getElementById('prodDesc').value = p.desc;
             } else {
                 document.getElementById('formModalTitle').innerText = 'Nuevo Producto';
                 document.getElementById('editProductId').value = '';
                 document.getElementById('productForm').reset();
+                document.getElementById('prodImage').value = '';
+                document.getElementById('prodImageUrl').value = '';
+                document.getElementById('prodImageFile').value = '';
+                selectProductImageMode('url');
+                showProductImagePreview('');
                 updateSubcategoryDropdownOptions();
             }
             document.getElementById('productFormModal').classList.remove('hidden');
+        }
+
+        function selectProductImageMode(mode) {
+            const urlWrap = document.getElementById('prodImageUrlWrap');
+            const fileWrap = document.getElementById('prodImageFileWrap');
+            const urlBtn = document.getElementById('prodImageUrlBtn');
+            const fileBtn = document.getElementById('prodImageFileBtn');
+            const source = document.getElementById('prodImageSourceLabel');
+            if (!urlWrap || !fileWrap) return;
+            const active = 'bg-sky-500/15 hover:bg-sky-500/25 border-sky-500/40 text-sky-300';
+            const inactive = 'bg-[#0b1329] hover:bg-sky-500/15 border-sky-950 text-slate-300';
+            if (mode === 'file') {
+                urlWrap.classList.add('hidden');
+                fileWrap.classList.remove('hidden');
+                urlBtn.className = urlBtn.className.replace(active, inactive);
+                fileBtn.className = fileBtn.className.replace(inactive, active);
+                if (source) source.innerHTML = '<i class="fa-solid fa-desktop"></i> Imagen desde el escritorio';
+            } else {
+                fileWrap.classList.add('hidden');
+                urlWrap.classList.remove('hidden');
+                fileBtn.className = fileBtn.className.replace(active, inactive);
+                urlBtn.className = urlBtn.className.replace(inactive, active);
+                if (source) source.innerHTML = '<i class="fa-solid fa-link"></i> Imagen mediante enlace';
+            }
+        }
+
+        function handleProductImageUrlInput() {
+            const url = (document.getElementById('prodImageUrl')?.value || '').trim();
+            document.getElementById('prodImage').value = url;
+            if (url) showProductImagePreview(url);
+            else showProductImagePreview('');
+        }
+
+        function clearProductImageUrl() {
+            const input = document.getElementById('prodImageUrl');
+            if (input) input.value = '';
+            document.getElementById('prodImage').value = '';
+            showProductImagePreview('');
+        }
+
+        function handleProductImageUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('Selecciona un archivo de imagen válido.');
+                event.target.value = '';
+                return;
+            }
+            const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert('La imagen es demasiado grande. Usa una imagen de máximo 5 MB.');
+                event.target.value = '';
+                return;
+            }
+            selectProductImageMode('file');
+            const urlInput = document.getElementById('prodImageUrl');
+            if (urlInput) urlInput.value = '';
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('prodImage').value = e.target.result;
+                showProductImagePreview(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showProductImagePreview(src) {
+            const box = document.getElementById('prodImagePreview');
+            const img = document.getElementById('prodImagePreviewImg');
+            if (!box || !img) return;
+            if (src) {
+                img.src = src;
+                box.classList.remove('hidden');
+            } else {
+                img.src = '';
+                box.classList.add('hidden');
+            }
         }
 
         function updateSubcategoryDropdownOptions(selectedSub = '') {
@@ -1949,6 +2079,7 @@
             localStorage.setItem('pcperu_cookies', 'rejected');
             document.getElementById('cookieConsentBanner').classList.add('hidden');
         }
+
 
         window.onload = function() {
             loadFromCloud();
