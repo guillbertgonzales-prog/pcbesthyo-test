@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - PC Best Huancayo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js para las gráficas de administración -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+        body, button, input, select, textarea { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display, .font-display * { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+        body { letter-spacing: -0.01em; }
+        .formal-text { font-family: 'Montserrat', sans-serif !important; font-weight: 500; letter-spacing: -0.005em; }
+        .formal-heading { font-family: 'Montserrat', sans-serif !important; font-weight: 700; letter-spacing: -0.025em; }
+        
+        ::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.5);
+            border-radius: 9999px;
+            transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.8);
+        }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+            header, #topStoreBanner, footer, .fixed, button, #categorias, section.relative:first-of-type .max-w-xl {
+                display: none !important;
+            }
+            #productGrid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+            #productGrid > div {
+                break-inside: avoid;
+                border: 1px solid #cbd5e1 !important;
+                background: white !important;
+                box-shadow: none !important;
+            }
+            #productGrid img {
+                height: 220px !important;
+                object-fit: contain !important;
+                background: #f8fafc !important;
+            }
+            #productGrid h3, #productGrid p, #productGrid span {
+                color: #0f172a !important;
+            }
+        }
+    
+        .admin-nav-btn { display:flex; align-items:center; gap:.5rem; white-space:nowrap; padding:.7rem .95rem; border:1px solid transparent; border-radius:.85rem; color:#94a3b8; background:transparent; font-size:.72rem; font-weight:800; transition:all .2s; }
+        .admin-nav-btn:hover { color:#fff; background:#0b1329; border-color:#164e63; transform:translateY(-1px); }
+        .admin-nav-btn.active { color:#67e8f9; background:linear-gradient(135deg,rgba(14,165,233,.18),rgba(37,99,235,.08)); border-color:rgba(14,165,233,.35); box-shadow:0 8px 25px rgba(14,165,233,.08); }
+        .admin-module { animation: adminFade .22s ease; }
+        @keyframes adminFade { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+    .admin-field-label { display:block; margin-bottom:.4rem; color:#94a3b8; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
+    .admin-field { width:100%; background:#0b1329; border:1px solid #172554; border-radius:.8rem; padding:.75rem 1rem; color:#f1f5f9; font-size:.78rem; outline:none; transition:.2s; }
+    .admin-field:focus { border-color:#22d3ee; box-shadow:0 0 0 3px rgba(34,211,238,.08); }
+</style>
+</head>
+<body class="formal-text bg-[#030712] text-slate-100 min-h-screen selection:bg-sky-500 selection:text-white">
+
+    <div id="topStoreBanner" class="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 text-white text-xs font-semibold py-2 px-4 shadow-md relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2 justify-center">
+                <i class="fa-solid fa-store text-sky-200 animate-pulse"></i>
+                <span>¡Bienvenidos a <strong>PC Best</strong>! Tienda física autorizada y envíos rápidos a todo el Perú 🚚</span>
+            </div>
+            <div class="flex items-center gap-4 justify-center">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-sky-200"></i> Huancayo, Junín</span>
+                <a href="https://wa.me/51910057512" target="_blank" class="hover:underline flex items-center gap-1.5 font-bold bg-white/10 px-2.5 py-1 rounded-full"><i class="fa-brands fa-whatsapp text-emerald-300"></i> Soporte y Ventas</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-[#0b1329]/90 backdrop-blur-md sticky top-0 z-40 border-b border-sky-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 group">
+                <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-500 via-blue-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-sky-500/30 ring-1 ring-white/10 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-microchip text-white text-xl"></i>
+                    <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-cyan-300 border-2 border-[#0b1329]"></span>
+                </div>
+                <div class="leading-none">
+                    <div class="flex items-baseline gap-2">
+                        <span class="font-black text-xl tracking-tight bg-gradient-to-r from-white via-sky-200 to-cyan-300 bg-clip-text text-transparent">PC BEST</span>
+                        <span class="text-[9px] font-black tracking-[0.22em] text-sky-400 uppercase">HUANCAYO</span>
+                    </div>
+                    <span class="block mt-1 text-[9px] text-slate-400 font-bold uppercase tracking-[0.18em]">Tecnología • Gaming • Hardware</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#catalogo" class="text-sm font-semibold text-slate-300 hover:text-sky-400 transition-colors">Catálogo</a>
+                <a href="#promoBannerContainer" onclick="goToOffers(event)" class="text-sm font-extrabold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-fire"></i> Ofertas
+                </a>
+                <a href="#categorias" class="text-sm font-semibold text-slate-300 hover:text-sky-400 transition-colors">Categorías</a>
+                <a href="#quienesSomos" class="text-sm font-semibold text-slate-300 hover:text-sky-400 transition-colors">Quiénes Somos</a>
+                <div class="flex items-center gap-3 border-l border-sky-950/60 pl-6">
+                    <a href="https://www.tiktok.com/@pcbesthuancayo" target="_blank" class="text-slate-400 hover:text-white transition-colors" title="TikTok">
+                        <i class="fa-brands fa-tiktok text-base"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="text-slate-400 hover:text-sky-400 transition-colors" title="Facebook">
+                        <i class="fa-brands fa-facebook text-base"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-slate-400 hover:text-pink-400 transition-colors" title="Instagram">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                    </a>
+                </div>
+                <a href="https://wa.me/51910057512" target="_blank" class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> 910057512
+                </a>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <button onclick="downloadPDFCatalog()" class="bg-[#0f172a] hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 p-2.5 rounded-xl transition-all flex items-center gap-1.5 text-xs font-bold" title="Descargar Catálogo Completo en PDF">
+                    <i class="fa-solid fa-file-pdf text-sm"></i>
+                    <span class="hidden sm:inline">Catálogo PDF</span>
+                </button>
+                <button onclick="requestPin()" class="bg-[#0f172a] hover:bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 px-3 py-2.5 rounded-xl transition-all flex items-center gap-1.5 text-xs font-bold" title="Abrir panel de administración" aria-label="Abrir panel de administración">
+                    <i class="fa-solid fa-user text-sm"></i>
+                </button>
+                <button onclick="toggleCartModal()" class="relative bg-[#0f172a] border border-sky-500/30 hover:border-sky-500 p-2.5 rounded-xl transition-all flex items-center gap-2 group">
+                    <i class="fa-solid fa-cart-shopping text-sky-400 text-lg"></i>
+                    <span class="hidden sm:inline text-xs font-bold text-slate-300 group-hover:text-white">Cotizar</span>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-sky-500 text-white font-black text-xs w-6 h-6 rounded-full flex items-center justify-center shadow-md shadow-sky-500/50">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative bg-gradient-to-b from-[#0b1329] via-[#030712] to-[#030712] py-12 px-4 sm:px-6 lg:px-8 border-b border-sky-950/30 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <div>
+                <span class="bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-widest inline-block mb-3">
+                    ⚡ Tecnología de Alto Rendimiento
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+                    El mejor hardware para tu <span class="bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">PC Gamer o de Trabajo</span>
+                </h1>
+                <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mt-3 font-medium">
+                    Equípate con componentes de alta gama y ofertas exclusivas con garantía a nivel nacional en PC Best.
+                </p>
+            </div>
+
+            <!-- Promo Banners Carousel -->
+            <div id="promoBannerContainer" class="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden border border-sky-900/40 bg-[#0b1329] shadow-2xl relative min-h-[320px] sm:min-h-[460px] flex items-center justify-center">
+                <!-- Dinámico -->
+            </div>
+
+            <div class="flex justify-center pt-2 flex-wrap gap-3">
+                <button onclick="interestInOffer()" class="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-extrabold px-8 py-3.5 rounded-2xl text-sm transition-all shadow-xl shadow-sky-500/30 flex items-center gap-3 transform hover:scale-105">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> ¡Consultar Oferta Especial!
+                </button>
+            </div>
+
+            <div class="max-w-4xl mx-auto pt-2 space-y-3">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-sky-400"></i>
+                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar procesador, tarjeta, case..." class="w-full bg-[#0b1329] border border-sky-950/60 rounded-2xl pl-11 pr-4 py-3.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categorias" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6 space-y-4">
+        <div class="flex items-center justify-between mb-2 flex-wrap gap-4">
+            <h2 class="text-xl font-extrabold text-white flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-sky-400"></i> Categorías de Productos
+            </h2>
+            <span id="productCounter" class="text-xs text-sky-400 font-bold bg-[#0b1329] px-3 py-1.5 rounded-lg border border-sky-950/60">Mostrando todos los productos</span>
+        </div>
+        
+        <div class="relative group/scroll">
+            <button onclick="scrollCategories(-300)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-3 z-20 bg-[#0b1329] hover:bg-sky-500 text-white w-9 h-9 rounded-full shadow-lg border border-sky-900/50 flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-all duration-300">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <div id="categoryContainer" class="flex gap-2.5 overflow-x-auto pb-3 pt-1 px-1 scroll-smooth no-scrollbar"></div>
+            <button onclick="scrollCategories(300)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-3 z-20 bg-[#0b1329] hover:bg-sky-500 text-white w-9 h-9 rounded-full shadow-lg border border-sky-900/50 flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-all duration-300">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+        </div>
+
+        <div class="relative group/subscroll">
+            <button onclick="scrollSubcategories(-300)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-3 z-20 bg-[#0b1329] hover:bg-blue-600 text-white w-9 h-9 rounded-full shadow-lg border border-sky-900/50 flex items-center justify-center opacity-0 group-hover/subscroll:opacity-100 transition-all duration-300">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <div id="subcategoryContainer" class="flex gap-2.5 overflow-x-auto pb-2 pt-1 px-1 hidden items-center bg-[#0b1329]/60 p-3 rounded-2xl border border-sky-950/60 scroll-smooth no-scrollbar"></div>
+            <button onclick="scrollSubcategories(300)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-3 z-20 bg-[#0b1329] hover:bg-blue-600 text-white w-9 h-9 rounded-full shadow-lg border border-sky-900/50 flex items-center justify-center opacity-0 group-hover/subscroll:opacity-100 transition-all duration-300">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+        </div>
+    </section>
+
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20">
+        <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+            <div class="flex items-center gap-2 text-sm font-bold text-slate-300">
+                <i class="fa-solid fa-boxes-stacked text-sky-400"></i>
+                <span>Catálogo</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <label for="sortProducts" class="text-xs font-bold text-slate-400">Ordenar:</label>
+                <select id="sortProducts" onchange="sortProducts()" class="bg-[#0b1329] border border-sky-950/60 rounded-xl px-3 py-2 text-xs font-bold text-white focus:outline-none focus:border-sky-500 cursor-pointer">
+                    <option value="default">Orden recomendado</option>
+                    <option value="priceAsc">Precio: menor a mayor</option>
+                    <option value="priceDesc">Precio: mayor a menor</option>
+                </select>
+            </div>
+        </div>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+        <div id="noResults" class="hidden text-center py-20">
+            <i class="fa-solid fa-box-open text-5xl text-sky-500 mb-4 animate-bounce"></i>
+            <h3 class="text-lg font-bold text-slate-300">No encontramos ningún producto con esos datos</h3>
+            <p class="text-sm text-slate-500 mt-1">Intenta buscar otro componente.</p>
+        </div>
+    </main>
+
+    <!-- Quienes Somos Section -->
+    <section id="quienesSomos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-sky-950/40">
+        <div class="bg-[#0b1329] border border-sky-900/50 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center gap-10">
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="w-full lg:w-1/2 space-y-6 relative z-10">
+                <span class="bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-widest inline-block">
+                    <i class="fa-solid fa-award mr-1"></i> <span id="aboutBadgeView">Nuestra Historia &amp; Pasión</span>
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+                    ¿Quiénes Somos en <span id="aboutTitleBrand" class="bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent">PC Best</span>?
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-medium">
+                    <span id="aboutDescriptionView">Somos una tienda especializada en hardware de alta gama, componentes de PC, tarjetas gráficas y ensamblajes personalizados en Huancayo. Nos apasiona la tecnología y nos esforzamos por ofrecer componentes 100% originales con garantía oficial.</span>
+                </p>
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                    <div class="bg-[#030712] p-4 rounded-2xl border border-sky-950">
+                        <i class="fa-solid fa-shield-halved text-sky-400 text-xl mb-2"></i>
+                        <h4 class="font-extrabold text-sm text-white"><span id="aboutFeature1TitleView">Garantía Directa</span></h4>
+                        <p class="text-xs text-slate-400 mt-1"><span id="aboutFeature1TextView">Productos certificados con garantía local.</span></p>
+                    </div>
+                    <div class="bg-[#030712] p-4 rounded-2xl border border-sky-950">
+                        <i class="fa-solid fa-truck-fast text-sky-400 text-xl mb-2"></i>
+                        <h4 class="font-extrabold text-sm text-white"><span id="aboutFeature2TitleView">Envíos Rápidos</span></h4>
+                        <p class="text-xs text-slate-400 mt-1"><span id="aboutFeature2TextView">Despachos seguros a Lima y Provincias.</span></p>
+                    </div>
+                </div>
+                <div class="pt-2 flex items-center gap-4">
+                    <a id="aboutWhatsappLink" href="https://wa.me/51910057512" target="_blank" class="bg-sky-500 hover:bg-sky-400 text-white font-extrabold px-6 py-3.5 rounded-2xl text-xs transition-all shadow-lg shadow-sky-500/30 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> <span id="aboutButtonTextView">Contáctanos Directo</span>
+                    </a>
+                    <span class="text-xs text-slate-400 font-semibold"><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i> <span id="aboutLocationView">Huancayo, Junín</span></span>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 relative z-10">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-sky-900/60 group">
+                    <img id="aboutUsImage" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop&q=80" alt="PC Best Tienda Gamer" class="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b1329] via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+                        <div class="bg-[#030712]/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-sky-500/30 shadow-xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase"><span id="aboutSpecialistLabelView">Especialistas en</span></p>
+                                <p class="text-xs font-black text-white"><span id="aboutSpecialistTextView">Gaming & Workstations</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cart Bar -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 w-full max-w-md px-4">
+        <div class="bg-[#0b1329]/90 backdrop-blur-md border border-sky-500/40 p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 font-semibold">Tus ítems de cotización</p>
+                    <p id="floatingCartTotal" class="text-sm font-extrabold text-white">S/. 0.00 (0 ítems)</p>
+                </div>
+            </div>
+            <button onclick="toggleCartModal()" class="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all shadow-lg shadow-sky-500/35 flex items-center gap-2">
+                Ver Cotización <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cookies Banner -->
+    <div id="cookieConsentBanner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-50 bg-[#0b1329] border border-sky-900/60 p-5 rounded-3xl shadow-2xl backdrop-blur-md hidden flex flex-col gap-4">
+        <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-cookie-bite text-lg"></i>
+            </div>
+            <div>
+                <h4 class="font-extrabold text-sm text-white">Aviso de Cookies 🍪</h4>
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Utilizamos almacenamiento local para recordar tu cotización en PC Best.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-2 pt-1">
+            <button onclick="acceptCookies()" class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all flex-1 shadow-lg shadow-sky-500/30">
+                Aceptar
+            </button>
+            <button onclick="rejectCookies()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-2.5 px-4 rounded-xl text-xs transition-all">
+                Rechazar
+            </button>
+        </div>
+    </div>
+
+    <!-- Offer Modal -->
+    <div id="offerDetailModal" class="fixed inset-0 z-50 bg-[#030712]/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col relative max-h-[90vh]">
+            <button onclick="closeOfferModal()" class="absolute top-4 right-4 z-20 bg-[#0f172a] text-slate-300 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-lg">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="p-6 bg-[#030712] border-b border-sky-950 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
+                    <i class="fa-solid fa-bullhorn text-lg"></i>
+                </div>
+                <div>
+                    <h3 id="offerModalTitleText" class="font-extrabold text-lg text-white">Oferta Especial</h3>
+                    <p class="text-xs text-slate-400">PC Best</p>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-[#030712]">
+                <img id="offerModalImage" src="" alt="Oferta" class="max-w-full max-h-[60vh] object-contain rounded-2xl shadow-2xl border border-sky-950">
+            </div>
+            <div class="p-6 bg-[#0b1329] border-t border-sky-950 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-slate-300 font-medium">¿Te interesa esta promoción? Consúltanos directamente.</p>
+                <div class="flex gap-3 w-full sm:w-auto">
+                    <button onclick="closeOfferModal()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-3 px-6 rounded-xl text-xs transition-all flex-1 sm:flex-none">Cerrar</button>
+                    <button onclick="interestInOfferFromModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-6 rounded-xl text-xs transition-all shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 flex-1 sm:flex-none">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Consultar por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productDetailModal" class="fixed inset-0 z-50 bg-[#030712]/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 bg-[#0f172a] text-slate-300 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="w-full md:w-1/2 bg-[#030712] p-6 flex items-center justify-center relative min-h-[280px]">
+                <img id="detailImage" src="" alt="Detalle" class="max-w-full max-h-[320px] object-contain rounded-xl drop-shadow-2xl">
+                <div class="absolute bottom-4 left-4 flex gap-2">
+                    <span id="detailCategory" class="bg-sky-500 text-white text-[11px] font-bold px-3 py-1 rounded-xl shadow-lg"></span>
+                    <span id="detailSubcategory" class="bg-blue-600 text-white text-[11px] font-bold px-3 py-1 rounded-xl shadow-lg hidden"></span>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between space-y-6">
+                <div class="space-y-4">
+                    <h3 id="detailName" class="text-xl md:text-2xl font-extrabold text-white leading-snug"></h3>
+                    <div class="flex items-baseline gap-3">
+                        <span id="detailPrice" class="text-2xl md:text-3xl font-black text-sky-400"></span>
+                        <span id="detailStock" class="text-xs font-bold px-2.5 py-1 rounded-lg"></span>
+                    </div>
+                    <div class="bg-[#030712] p-4 rounded-2xl border border-sky-950">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-1.5"><i class="fa-solid fa-circle-info mr-1"></i> Especificaciones</h4>
+                        <p id="detailDesc" class="text-xs md:text-sm text-slate-300 leading-relaxed"></p>
+                    </div>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button onclick="closeDetailModal()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1">Cerrar</button>
+                    <button id="detailAddBtn" onclick="" class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1 shadow-lg shadow-sky-500/30 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIN Modal -->
+    <div id="pinModal" class="fixed inset-0 z-50 bg-[#030712]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl p-6 text-center space-y-4">
+            <div class="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div>
+                <h3 class="font-extrabold text-lg text-white">Acceso Admin</h3>
+                <p class="text-xs text-slate-400 mt-1">PIN Secreto (<span class="text-sky-400 font-bold">2230</span>)</p>
+            </div>
+            <input type="password" id="pinInput" placeholder="••••" maxlength="4" class="w-full bg-[#030712] border border-sky-950 rounded-xl text-center text-2xl tracking-widest py-3 text-white focus:outline-none focus:border-sky-500">
+            <p id="pinError" class="text-xs text-red-400 hidden font-semibold">PIN incorrecto</p>
+            <div class="flex gap-2 pt-2">
+                <button onclick="closePinModal()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-2.5 px-4 rounded-xl text-xs transition-all flex-1">Cancelar</button>
+                <button onclick="verifyPin()" class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all flex-1 shadow-lg shadow-sky-500/30">Acceder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanelModal" class="fixed inset-0 z-50 bg-[#030712]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            <div class="p-6 border-b border-sky-950 flex items-center justify-between bg-[#030712]">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-lg text-white">Panel de Administración - PC Best</h3>
+                        <p class="text-xs text-slate-400">Banners, categorías, inventario y gráficos</p>
+                    </div>
+                </div>
+                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-[#0f172a] transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Admin Navigation -->
+            <div class="bg-[#030712] border-b border-sky-950 px-4 py-3">
+                <div class="flex gap-2 overflow-x-auto" id="adminNavigation">
+                    <button onclick="switchAdminTab('resumen')" id="adminTabBtn-resumen" class="admin-nav-btn active"><i class="fa-solid fa-gauge-high"></i><span>Resumen</span></button>
+                    <button onclick="switchAdminTab('banners')" id="adminTabBtn-banners" class="admin-nav-btn"><i class="fa-solid fa-images"></i><span>Banners</span></button>
+                    <button onclick="switchAdminTab('nosotros')" id="adminTabBtn-nosotros" class="admin-nav-btn"><i class="fa-solid fa-building"></i><span>Quiénes Somos</span></button>
+                    <button onclick="switchAdminTab('descuentos')" id="adminTabBtn-descuentos" class="admin-nav-btn"><i class="fa-solid fa-ticket"></i><span>Descuentos</span></button>
+                    <button onclick="switchAdminTab('categorias')" id="adminTabBtn-categorias" class="admin-nav-btn"><i class="fa-solid fa-layer-group"></i><span>Categorías</span></button>
+                    <button onclick="switchAdminTab('productos')" id="adminTabBtn-productos" class="admin-nav-btn"><i class="fa-solid fa-boxes-stacked"></i><span>Productos</span></button>
+                    <button onclick="switchAdminTab('graficos')" id="adminTabBtn-graficos" class="admin-nav-btn"><i class="fa-solid fa-chart-pie"></i><span>Estadísticas</span></button>
+                </div>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex-1 space-y-8">
+                <!-- RESUMEN -->
+                <div id="adminTabContent-resumen" class="admin-module space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950"><p class="text-xs text-slate-400 font-bold uppercase">Productos</p><h3 id="statSummaryProducts" class="text-3xl font-black text-sky-400 mt-1">0</h3><p class="text-[11px] text-slate-500 mt-1">Catálogo actual</p></div>
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950"><p class="text-xs text-slate-400 font-bold uppercase">Categorías</p><h3 id="statSummaryCategories" class="text-3xl font-black text-blue-400 mt-1">0</h3><p class="text-[11px] text-slate-500 mt-1">Categorías activas</p></div>
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950"><p class="text-xs text-slate-400 font-bold uppercase">Stock</p><h3 id="statSummaryStock" class="text-3xl font-black text-emerald-400 mt-1">0</h3><p class="text-[11px] text-slate-500 mt-1">Unidades disponibles</p></div>
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950"><p class="text-xs text-slate-400 font-bold uppercase">Stock bajo</p><h3 id="statSummaryLowStock" class="text-3xl font-black text-amber-400 mt-1">0</h3><p class="text-[11px] text-slate-500 mt-1">Productos con ≤ 5 unidades</p></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950">
+                            <div class="flex items-center justify-between mb-4"><div><h4 class="text-sm font-extrabold text-white">Estado del catálogo</h4><p class="text-xs text-slate-500 mt-1">Resumen operativo actual</p></div><i class="fa-solid fa-chart-simple text-sky-400"></i></div>
+                            <div id="adminSummaryBreakdown" class="space-y-3"></div>
+                        </div>
+                        <div class="bg-gradient-to-r from-sky-500/10 via-blue-500/5 to-transparent border border-sky-500/20 rounded-2xl p-6">
+                            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-2xl bg-sky-500/15 text-sky-400 flex items-center justify-center"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></div><div><h4 class="font-extrabold text-white">Centro de administración</h4><p class="text-sm text-slate-400 mt-1">Cada pestaña está separada para que puedas gestionar banners, categorías, productos y estadísticas sin mezclar opciones.</p></div></div>
+                            <div class="grid grid-cols-2 gap-3 mt-6">
+                                <button onclick="switchAdminTab('productos')" class="bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 rounded-xl p-3 text-left"><i class="fa-solid fa-boxes-stacked text-sky-400"></i><span class="block text-xs font-bold text-white mt-2">Gestionar productos</span></button>
+                                <button onclick="switchAdminTab('banners')" class="bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 rounded-xl p-3 text-left"><i class="fa-solid fa-images text-blue-400"></i><span class="block text-xs font-bold text-white mt-2">Gestionar banners</span></button>
+                                <button onclick="switchAdminTab('nosotros')" class="bg-cyan-500/10 border border-cyan-500/20 hover:bg-cyan-500/20 rounded-xl p-3 text-left"><i class="fa-solid fa-building text-cyan-400"></i><span class="block text-xs font-bold text-white mt-2">Editar quiénes somos</span></button>
+                                <button onclick="switchAdminTab('categorias')" class="bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 rounded-xl p-3 text-left"><i class="fa-solid fa-layer-group text-emerald-400"></i><span class="block text-xs font-bold text-white mt-2">Organizar categorías</span></button>
+                                <button onclick="switchAdminTab('graficos')" class="bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 rounded-xl p-3 text-left"><i class="fa-solid fa-chart-pie text-purple-400"></i><span class="block text-xs font-bold text-white mt-2">Ver estadísticas</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BANNERS -->
+                <div id="adminTabContent-banners" class="admin-module space-y-6 hidden">
+                    <!-- Top Bar Manager -->
+                    <div id="adminSectionTopBar" class="bg-[#030712] p-5 rounded-2xl border border-sky-950 space-y-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn text-sky-400"></i> Gestión de Barras Informativas Superiores
+                            </h4>
+                            <p class="text-xs text-slate-400">Personaliza los anuncios que rotan en la barra superior de la tienda</p>
+                        </div>
+                        <form onsubmit="handleTopBarSubmit(event)" class="flex gap-3 flex-col sm:flex-row">
+                            <input type="text" id="newTopBarText" required placeholder="Texto del anuncio (ej. ¡Envíos gratis a todo Lima este mes!)..." class="flex-1 bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+                            <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-white font-bold px-6 py-3 rounded-xl text-xs transition-all shadow-lg shadow-sky-500/30 whitespace-nowrap">
+                                Agregar Barra
+                            </button>
+                        </form>
+                        <div id="adminTopBarList" class="space-y-2 pt-2"></div>
+                    </div>
+
+                    <div id="adminSectionPromo" class="bg-[#030712] p-5 rounded-2xl border border-sky-950 space-y-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-image text-sky-400"></i> Gestión de Banners de Oferta
+                            </h4>
+                            <p class="text-xs text-slate-400">Agrega imágenes promocionales</p>
+                        </div>
+                        <form onsubmit="handlePromoBannerSubmit(event)" class="flex gap-3 flex-col sm:flex-row">
+                            <input type="url" id="newPromoImage" required placeholder="URL de imagen de oferta..." class="flex-1 bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+                            <input type="text" id="newPromoTitle" placeholder="Título corto..." class="sm:w-64 bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+                            <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-white font-bold px-6 py-3 rounded-xl text-xs transition-all shadow-lg shadow-sky-500/30 whitespace-nowrap">
+                                Guardar Oferta
+                            </button>
+                        </form>
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-[11px] text-slate-500">Banners activos: <strong id="adminPromoCount" class="text-sky-400">0</strong></span>
+                            <span class="text-[11px] text-slate-500">Vista previa disponible</span>
+                        </div>
+                        <div id="adminPromoList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                    </div>
+
+                </div>
+
+                <!-- QUIENES SOMOS -->
+                <div id="adminTabContent-nosotros" class="admin-module space-y-6 hidden">
+                    <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                            <div><h4 class="text-sm font-extrabold text-white flex items-center gap-2"><i class="fa-solid fa-building text-cyan-400"></i> Editar “Quiénes Somos”</h4><p class="text-xs text-slate-400 mt-1">Personaliza el contenido que aparece en la página principal de tu tienda.</p></div>
+                            <span class="text-[11px] text-slate-500">Contenido de empresa</span>
+                        </div>
+                        <form onsubmit="handleAboutSubmit(event)" class="space-y-5">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div><label class="admin-field-label">Etiqueta superior</label><input id="aboutBadge" class="admin-field"></div>
+                                <div><label class="admin-field-label">Título</label><input id="aboutTitle" class="admin-field"></div>
+                            </div>
+                            <div><label class="admin-field-label">Descripción</label><textarea id="aboutDescription" rows="4" class="admin-field resize-none"></textarea></div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div class="bg-[#0b1329] p-4 rounded-2xl border border-sky-950 space-y-3"><div class="flex items-center gap-2 text-sky-400"><i class="fa-solid fa-shield-halved"></i><span class="text-xs font-extrabold uppercase">Beneficio 1</span></div><input id="aboutFeature1Title" class="admin-field"><textarea id="aboutFeature1Text" rows="2" class="admin-field resize-none"></textarea></div>
+                                <div class="bg-[#0b1329] p-4 rounded-2xl border border-sky-950 space-y-3"><div class="flex items-center gap-2 text-sky-400"><i class="fa-solid fa-truck-fast"></i><span class="text-xs font-extrabold uppercase">Beneficio 2</span></div><input id="aboutFeature2Title" class="admin-field"><textarea id="aboutFeature2Text" rows="2" class="admin-field resize-none"></textarea></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div><label class="admin-field-label">Texto del botón</label><input id="aboutButtonText" class="admin-field"></div>
+                                <div><label class="admin-field-label">WhatsApp</label><input id="aboutWhatsapp" class="admin-field"></div>
+                                <div><label class="admin-field-label">Ubicación</label><input id="aboutLocation" class="admin-field"></div>
+                                <div><label class="admin-field-label">URL de imagen</label><input id="aboutImage" type="url" class="admin-field"></div>
+                                <div><label class="admin-field-label">Etiqueta de especialidad</label><input id="aboutSpecialistLabel" class="admin-field"></div>
+                                <div><label class="admin-field-label">Especialidad</label><input id="aboutSpecialistText" class="admin-field"></div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-3 pt-2"><button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-6 py-3 rounded-xl text-xs transition-all"><i class="fa-solid fa-eye mr-2"></i>Aplicar cambios</button><button type="button" onclick="loadAboutForm()" class="bg-[#0b1329] hover:bg-[#0f172a] text-slate-300 font-bold px-6 py-3 rounded-xl text-xs transition-all">Restaurar valores actuales</button></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- DESCUENTOS -->
+                <div id="adminTabContent-descuentos" class="admin-module space-y-6 hidden">
+                    <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                            <div><h4 class="text-sm font-extrabold text-white flex items-center gap-2"><i class="fa-solid fa-ticket text-amber-400"></i> Códigos de descuento</h4><p class="text-xs text-slate-400 mt-1">Crea promociones por porcentaje o monto fijo para que tus clientes las apliquen en el carrito.</p></div>
+                            <span class="text-[11px] text-slate-500">Códigos: <strong id="adminDiscountCount" class="text-amber-400">0</strong></span>
+                        </div>
+                        <form onsubmit="handleDiscountSubmit(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                            <input id="newDiscountCode" required maxlength="24" placeholder="Código: GAMER20" class="bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 uppercase focus:outline-none focus:border-amber-500">
+                            <select id="newDiscountType" class="bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-amber-500"><option value="percent">Porcentaje (%)</option><option value="fixed">Monto fijo (S/.)</option></select>
+                            <input id="newDiscountValue" required type="number" min="0.01" step="0.01" placeholder="Valor" class="bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-amber-500">
+                            <input id="newDiscountMin" type="number" min="0" step="0.01" value="0" placeholder="Compra mínima" class="bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-amber-500">
+                            <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-5 py-3 rounded-xl text-xs transition-all">Crear código</button>
+                        </form>
+                    </div>
+                    <div id="adminDiscountList" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- CATEGORÍAS -->
+                <div id="adminTabContent-categorias" class="admin-module space-y-6 hidden">
+                    <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950 space-y-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-folder-plus text-sky-400"></i> Categorías Principales
+                            </h4>
+                        </div>
+                        <form onsubmit="handleCategorySubmit(event)" class="flex gap-3 flex-col sm:flex-row">
+                            <input type="text" id="newCategoryName" required placeholder="Nueva categoría..." class="flex-1 bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-sky-500">
+                            <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl text-xs transition-all whitespace-nowrap">
+                                Guardar Categoría
+                            </button>
+                        </form>
+                        <div class="flex items-center justify-between pt-2"><span class="text-[11px] text-slate-500">Categorías registradas: <strong id="adminCategoryCount" class="text-emerald-400">0</strong></span></div>
+                        <div id="adminCategoryList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+                    </div>
+
+                    <!-- Subcategorías -->
+                    <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950 space-y-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-folder-tree text-blue-400"></i> Subcategorías
+                            </h4>
+                        </div>
+                        <form onsubmit="handleSubcategorySubmit(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <select id="subCatParentSelect" required class="bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-blue-500">
+                                <option value="">Seleccionar Categoría...</option>
+                            </select>
+                            <input type="text" id="newSubcategoryName" required placeholder="Subcategoría..." class="bg-[#0b1329] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-blue-500">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-xl text-xs transition-all whitespace-nowrap">
+                                Agregar
+                            </button>
+                        </form>
+                        <div id="adminSubcategoryList" class="space-y-3 pt-2"></div>
+                    </div>
+
+                </div>
+
+                <!-- PRODUCTOS -->
+                <div id="adminTabContent-productos" class="admin-module space-y-4 hidden">
+                    <div class="bg-gradient-to-r from-sky-500/10 to-transparent p-5 rounded-2xl border border-sky-500/20 mb-2">
+                        <h4 class="text-base font-extrabold text-white">Inventario de productos</h4>
+                        <p class="text-xs text-slate-400 mt-1">Administra precios, stock, categorías y productos desde un espacio dedicado.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#030712] p-4 rounded-2xl border border-sky-950 gap-4">
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Inventario de Productos</h4>
+                            </div>
+                            <button onclick="openProductForm()" class="bg-sky-500 hover:bg-sky-400 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-lg shadow-sky-500/30 whitespace-nowrap">
+                                <i class="fa-solid fa-plus"></i> Nuevo Producto
+                            </button>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="relative flex-1"><i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i><input id="adminProductSearch" oninput="renderAdminProducts()" type="search" placeholder="Buscar producto..." class="w-full bg-[#030712] border border-sky-950 rounded-xl pl-10 pr-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-sky-500"></div>
+                            <select id="adminStockFilter" onchange="renderAdminProducts()" class="bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-xs text-slate-200"><option value="todos">Todo el stock</option><option value="bajo">Stock bajo</option><option value="agotado">Agotados</option></select>
+                        </div>
+                        <div class="flex items-center justify-between"><div class="flex items-center gap-2 overflow-x-auto pb-1" id="adminCategoryFilterTabs"></div><span id="adminProductCount" class="text-[11px] text-slate-500 whitespace-nowrap"></span></div>
+                        <div class="space-y-3" id="adminProductList"></div>
+                    </div>
+                </div>
+
+                <!-- ESTADÍSTICAS -->
+                <div id="adminTabContent-graficos" class="admin-module space-y-6 hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950">
+                            <p class="text-xs text-slate-400 font-bold uppercase">Total Productos</p>
+                            <h3 id="statTotalProducts" class="text-3xl font-black text-sky-400 mt-1">0</h3>
+                        </div>
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950">
+                            <p class="text-xs text-slate-400 font-bold uppercase">Categorías Activas</p>
+                            <h3 id="statTotalCategories" class="text-3xl font-black text-blue-400 mt-1">0</h3>
+                        </div>
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950">
+                            <p class="text-xs text-slate-400 font-bold uppercase">Stock Total en Tienda</p>
+                            <h3 id="statTotalStock" class="text-3xl font-black text-emerald-400 mt-1">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950 flex flex-col items-center">
+                            <h4 class="text-sm font-bold text-white mb-4 self-start"><i class="fa-solid fa-chart-pie text-sky-400 mr-2"></i> Productos por Categoría</h4>
+                            <div class="w-full h-64 flex items-center justify-center relative">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="bg-[#030712] p-5 rounded-2xl border border-sky-950 flex flex-col items-center">
+                            <h4 class="text-sm font-bold text-white mb-4 self-start"><i class="fa-solid fa-chart-bar text-emerald-400 mr-2"></i> Stock por Categoría</h4>
+                            <div class="w-full h-64 flex items-center justify-center relative">
+                                <canvas id="stockChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-[#030712] border-t border-sky-950 flex justify-between items-center">
+                <p id="adminStatusMsg" class="text-xs text-emerald-400 font-semibold hidden"><i class="fa-solid fa-check-circle mr-1"></i> Cambios guardados</p>
+                <div class="flex gap-3 ml-auto">
+                    <button onclick="toggleAdminPanel()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-2.5 px-6 rounded-xl text-xs transition-all">Cerrar</button>
+                    <button onclick="saveAdminChanges()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-6 rounded-xl text-xs transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Form Modal -->
+    <div id="productFormModal" class="fixed inset-0 z-50 bg-[#030712]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-[#0b1329] border border-sky-900/50 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div class="p-6 border-b border-sky-950 flex items-center justify-between bg-[#030712]">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
+                        <i class="fa-solid fa-pen-to-square" id="formModalIcon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-lg text-white" id="formModalTitle">Producto</h3>
+                        <p class="text-xs text-slate-400">PC Best</p>
+                    </div>
+                </div>
+                <button onclick="closeProductForm()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-[#0f172a] transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <form id="productForm" onsubmit="handleProductFormSubmit(event)" class="p-6 space-y-4">
+                <input type="hidden" id="editProductId">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Nombre del Producto</label>
+                    <input type="text" id="prodName" required placeholder="Ej. AMD Ryzen 7 5700X" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Categoría</label>
+                        <select id="prodCategory" onchange="updateSubcategoryDropdownOptions()" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Subcategoría</label>
+                        <select id="prodSubcategory" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                            <option value="">-- Sin subcategoría --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Precio (S/.)</label>
+                        <input type="number" step="0.01" id="prodPrice" required placeholder="0.00" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Stock</label>
+                        <input type="number" id="prodStock" required value="10" class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">URL Imagen</label>
+                    <input type="url" id="prodImage" placeholder="https://..." class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Descripción</label>
+                    <textarea id="prodDesc" rows="3" placeholder="Especificaciones..." class="w-full bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-sky-500"></textarea>
+                </div>
+                <div class="pt-4 flex gap-3">
+                    <button type="button" onclick="closeProductForm()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1">Cerrar</button>
+                    <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1 shadow-lg shadow-sky-500/30">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="fixed inset-0 z-50 bg-[#030712]/70 backdrop-blur-sm hidden" onclick="if(event.target===this) toggleCartModal()">
+        <div class="bg-[#0b1329] border-l border-sky-900/60 w-full max-w-xl h-full ml-auto rounded-l-3xl overflow-hidden shadow-2xl flex flex-col transform transition-transform duration-300" onclick="event.stopPropagation()">
+            <div class="p-6 border-b border-sky-950 flex items-center justify-between bg-[#030712]">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-lg text-white">Cotización PC Best</h3>
+                        <p class="text-xs text-slate-400">Resumen de tu selección</p>
+                    </div>
+                </div>
+                <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-[#0f172a] transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1 space-y-4">
+                <div id="cartItemList" class="space-y-3"></div>
+            </div>
+            <div class="p-6 bg-[#030712] border-t border-sky-950 space-y-4">
+                <div class="bg-[#0b1329] border border-sky-950 rounded-2xl p-4">
+                    <div class="flex gap-2">
+                        <input id="discountCodeInput" maxlength="24" placeholder="¿Tienes un código de descuento?" class="flex-1 bg-[#030712] border border-sky-950 rounded-xl px-4 py-3 text-xs text-white uppercase focus:outline-none focus:border-amber-500">
+                        <button onclick="applyDiscountCode()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-4 rounded-xl text-xs">Aplicar</button>
+                    </div>
+                    <p id="discountMessage" class="text-[11px] mt-2 text-slate-500">Ingresa tu código y valida la promoción.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs"><span class="text-slate-500">Subtotal:</span><span id="cartSubtotalVal" class="text-slate-300 font-bold">S/. 0.00</span></div>
+                    <div class="flex items-center justify-between text-xs"><span class="text-slate-500">Descuento:</span><span id="cartDiscountVal" class="text-emerald-400 font-bold">- S/. 0.00</span></div>
+                    <div class="flex items-center justify-between border-t border-sky-950 pt-3"><span class="text-sm font-bold text-slate-300">Total General:</span><span id="cartTotalVal" class="text-xl font-black text-sky-400">S/. 0.00</span></div>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="clearCart()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 font-bold py-3 px-4 rounded-xl text-xs transition-all">Vaciar</button>
+                    <button onclick="sendToWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all flex-1 shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i> Enviar Cotización por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1329] border-t border-sky-950/60 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2"><span class="font-black text-lg tracking-tight text-white">PC BEST</span><span class="text-[9px] font-black tracking-[0.18em] text-sky-400">HUANCAYO</span></div>
+                <p class="text-xs text-slate-400 mt-1">Tu tienda tecnológica especializada en hardware, gaming y ensamblajes en Huancayo.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://www.tiktok.com/@pcbesthuancayo" target="_blank" class="w-10 h-10 bg-[#0f172a] hover:bg-sky-500 text-slate-300 hover:text-white rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                <a href="https://www.facebook.com" target="_blank" class="w-10 h-10 bg-[#0f172a] hover:bg-sky-500 text-slate-300 hover:text-white rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-facebook text-lg"></i></a>
+                <a href="https://www.instagram.com" target="_blank" class="w-10 h-10 bg-[#0f172a] hover:bg-sky-500 text-slate-300 hover:text-white rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="https://wa.me/51910057512" target="_blank" class="w-10 h-10 bg-[#0f172a] hover:bg-emerald-600 text-slate-300 hover:text-white rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-8 pt-6 border-t border-sky-950/40 text-center text-xs text-slate-500">
+            &copy; 2026 PC Best. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        const CLOUD_MASTER_KEY = "$2a$10$zDVRXQE2nViYTAkTFbEK3OPyzJEcMycLeDBOcN5IAp2nQj3z3pq0e";
+        const CLOUD_BIN_ID = "6abd35cbac6210605a06028a";
+
+        let topBarMessages = [
+            "¡Bienvenidos a PC Best! Tienda física autorizada y envíos rápidos a todo el Perú 🚚",
+            "⚡ ¡Aprovecha los descuentos en Tarjetas Gráficas y Procesadores este mes!",
+            "💻 Ensamblajes profesionales con garantía directa y soporte técnico especializado"
+        ];
+        let currentTopBarIndex = 0;
+        let topBarInterval = null;
+
+        let promoBanners = [
+            { id: 1, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=1000&auto=format&fit=crop&q=80", title: "⚡ ¡Lo Último en Tarjetas Gráficas!" },
+            { id: 2, image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=1000&auto=format&fit=crop&q=80", title: "💻 Ensamblajes Gamer de Alto Rendimiento" }
+        ];
+
+        let currentBannerIndex = 0;
+        let bannerInterval = null;
+
+        let categories = [
+            "Ofertas",
+            "Procesadores",
+            "Tarjetas de Video",
+            "Placas Madre",
+            "Memorias RAM",
+            "Almacenamiento",
+            "Cases y Fuentes"
+        ];
+
+        let subcategories = {
+            "Ofertas": ["Combos Gamer", "Descuentos Flash"],
+            "Procesadores": ["AMD Ryzen", "Intel Core"],
+            "Tarjetas de Video": ["NVIDIA GeForce", "AMD Radeon"],
+            "Placas Madre": ["Chipset AMD", "Chipset Intel"],
+            "Memorias RAM": ["DDR4", "DDR5"],
+            "Almacenamiento": ["SSD NVMe M.2", "Discos duros HDD", "SSD SATA"],
+            "Cases y Fuentes": ["Cases Gamer", "Fuentes de Poder 80+", "Combos"]
+        };
+
+        let products = [
+            {
+                id: 1,
+                name: "AMD Ryzen 5 5600G (Oferta Especial)",
+                category: "Ofertas",
+                subcategory: "Descuentos Flash",
+                price: 490.00,
+                stock: 15,
+                image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500&auto=format&fit=crop&q=60",
+                desc: "Procesador 6 núcleos con gráficos integrados en oferta por tiempo limitado."
+            },
+            {
+                id: 2,
+                name: "Intel Core i5-13400F",
+                category: "Procesadores",
+                subcategory: "Intel Core",
+                price: 680.00,
+                stock: 8,
+                image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500&auto=format&fit=crop&q=60",
+                desc: "Procesador Intel 13ª generación, 10 núcleos y 16 hilos. Socket LGA 1700."
+            },
+            {
+                id: 3,
+                name: "NVIDIA GeForce RTX 4060 8GB (Precio Rebajado)",
+                category: "Ofertas",
+                subcategory: "Descuentos Flash",
+                price: 1250.00,
+                stock: 6,
+                image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=60",
+                desc: "Tarjeta gráfica Ada Lovelace 8GB GDDR6 con descuento especial en tienda."
+            },
+            {
+                id: 4,
+                name: "Gigabyte B550M AORUS ELITE",
+                category: "Placas Madre",
+                subcategory: "Chipset AMD",
+                price: 420.00,
+                stock: 10,
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=60",
+                desc: "Placa base Micro-ATX con chipset AMD B550, socket AM4."
+            },
+            {
+                id: 5,
+                name: "Lexar Thor 16GB (2x8GB) 3200MHz",
+                category: "Memorias RAM",
+                subcategory: "DDR4",
+                price: 210.00,
+                stock: 20,
+                image: "https://images.unsplash.com/photo-1562976540-1e02c51414c5?w=500&auto=format&fit=crop&q=60",
+                desc: "Kit de memoria RAM DDR4 de alto rendimiento 3200MHz CL16."
+            },
+            {
+                id: 6,
+                name: "Kingston NV2 1TB NVMe PCIe 4.0",
+                category: "Almacenamiento",
+                subcategory: "SSD NVMe M.2",
+                price: 270.00,
+                stock: 25,
+                image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500&auto=format&fit=crop&q=60",
+                desc: "Unidad SSD M.2 NVMe con velocidades de lectura ultrarrápidas."
+            }
+        ];
+
+        let currentCategory = 'todos';
+        let currentSubcategory = 'todos';
+        let priceFilterMin = 0;
+        let priceFilterMax = Infinity;
+        let productSort = 'default';
+        let currentAdminCategory = 'todos';
+        let cart = [];
+        let appliedDiscountCode = '';
+        let appliedDiscountAmount = 0;
+        let discountCodes = [
+            { id: 1, code: 'PCBEST10', type: 'percent', value: 10, minAmount: 0, active: true, expiresAt: '' },
+            { id: 2, code: 'BESTGAMER50', type: 'fixed', value: 50, minAmount: 500, active: true, expiresAt: '' }
+        ];
+        let aboutUs = { badge:"Nuestra Historia & Pasión", title:"¿Quiénes Somos en PC Best Huancayo?", description:"Somos una tienda especializada en hardware de alta gama, componentes de PC, tarjetas gráficas y ensamblajes personalizados en Huancayo. Nos apasiona la tecnología y nos esforzamos por ofrecer componentes 100% originales con garantía oficial.", feature1Title:"Garantía Directa", feature1Text:"Productos certificados con garantía local.", feature2Title:"Envíos Rápidos", feature2Text:"Despachos seguros a Lima y Provincias.", buttonText:"Contáctanos Directo", whatsapp:"51910057512", location:"Huancayo, Junín", image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop&q=80", specialistLabel:"Especialistas en", specialistText:"Gaming & Workstations" };
+        const ADMIN_PIN = "2230";
+
+        let categoryChartInstance = null;
+        let stockChartInstance = null;
+
+        function scrollCategories(offset) {
+            document.getElementById('categoryContainer').scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        function scrollSubcategories(offset) {
+            document.getElementById('subcategoryContainer').scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        async function loadFromCloud() {
+            try {
+                const res = await fetch(`https://api.jsonbin.io/v3/b/${CLOUD_BIN_ID}/latest`, {
+                    headers: { "X-Master-Key": CLOUD_MASTER_KEY }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.record) {
+                        if (data.record.topBarMessages) topBarMessages = data.record.topBarMessages;
+                        if (data.record.promoBanners) promoBanners = data.record.promoBanners;
+                        if (data.record.categories) categories = data.record.categories;
+                        if (data.record.subcategories) subcategories = data.record.subcategories;
+                        if (data.record.products) products = data.record.products;
+                        if (data.record.discountCodes) discountCodes = data.record.discountCodes;
+                        if (data.record.aboutUs) aboutUs = { ...aboutUs, ...data.record.aboutUs };
+                    }
+                }
+            } catch (e) {
+                console.log("Modo local activo");
+            }
+            renderAll();
+        }
+
+        async function saveToCloud() {
+            try {
+                await fetch(`https://api.jsonbin.io/v3/b/${CLOUD_BIN_ID}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Master-Key": CLOUD_MASTER_KEY
+                    },
+                    body: JSON.stringify({ topBarMessages, promoBanners, categories, subcategories, products, discountCodes, aboutUs })
+                });
+            } catch (e) {
+                console.error("Error al sincronizar", e);
+            }
+        }
+
+        function renderAll() {
+            renderTopStoreBanner();
+            renderPromoBanners();
+            initializePriceFilter();
+        renderCategories();
+            renderSubcategories();
+            renderProducts();
+            renderCartCount();
+            renderAboutUs();
+        }
+
+        function renderTopStoreBanner() {
+            const container = document.getElementById('topStoreBanner');
+            if (!topBarMessages || topBarMessages.length === 0) {
+                container.innerHTML = `<div class="max-w-7xl mx-auto text-center py-1">PC Best - Tienda Oficial</div>`;
+                return;
+            }
+            if (currentTopBarIndex >= topBarMessages.length) currentTopBarIndex = 0;
+            const msg = topBarMessages[currentTopBarIndex];
+
+            container.innerHTML = `
+                <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left transition-all duration-500">
+                    <div class="flex items-center gap-2 justify-center">
+                        <i class="fa-solid fa-store text-sky-200 animate-pulse"></i>
+                        <span>${msg}</span>
+                    </div>
+                    <div class="flex items-center gap-4 justify-center">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-sky-200"></i> Huancayo, Junín</span>
+                        <a href="https://wa.me/51910057512" target="_blank" class="hover:underline flex items-center gap-1.5 font-bold bg-white/10 px-2.5 py-1 rounded-full"><i class="fa-brands fa-whatsapp text-emerald-300"></i> Soporte y Ventas</a>
+                    </div>
+                </div>
+            `;
+            if (!topBarInterval && topBarMessages.length > 1) {
+                topBarInterval = setInterval(() => {
+                    currentTopBarIndex = (currentTopBarIndex + 1) % topBarMessages.length;
+                    renderTopStoreBanner();
+                }, 4000);
+            }
+        }
+
+        function renderPromoBanners() {
+            const container = document.getElementById('promoBannerContainer');
+            if (!promoBanners || promoBanners.length === 0) {
+                container.innerHTML = `<div class="p-12 text-center text-slate-500"><i class="fa-solid fa-image text-5xl mb-2 text-sky-500"></i><p class="text-sm">No hay banners activos</p></div>`;
+                return;
+            }
+            if (currentBannerIndex >= promoBanners.length) currentBannerIndex = 0;
+            const b = promoBanners[currentBannerIndex];
+
+            container.innerHTML = `
+                <div class="relative w-full h-[320px] sm:h-[460px] overflow-hidden group cursor-pointer" onclick="openOfferModal(${b.id})" title="Ver imagen en grande">
+                    <img src="${b.image}" alt="${b.title || 'Oferta'}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/20 to-transparent flex items-end p-8">
+                        <div>
+                            ${b.title ? `<span class="bg-sky-500 text-white font-extrabold text-sm px-4 py-1.5 rounded-xl shadow-lg mb-3 inline-block">${b.title}</span>` : ''}
+                            <p class="text-xs sm:text-sm text-slate-200 font-semibold flex items-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass-plus text-sky-400"></i> ¡Haz clic para ver la imagen en grande!
+                            </p>
+                        </div>
+                    </div>
+                    ${promoBanners.length > 1 ? `
+                        <button onclick="event.stopPropagation(); prevBanner();" class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#030712]/70 hover:bg-[#030712] text-white p-3 rounded-full backdrop-blur-sm transition-all shadow-xl"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+                        <button onclick="event.stopPropagation(); nextBanner();" class="absolute right-4 top-1/2 -translate-y-1/2 bg-[#030712]/70 hover:bg-[#030712] text-white p-3 rounded-full backdrop-blur-sm transition-all shadow-xl"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+                    ` : ''}
+                </div>
+            `;
+            if (!bannerInterval && promoBanners.length > 1) {
+                bannerInterval = setInterval(() => {
+                    currentBannerIndex = (currentBannerIndex + 1) % promoBanners.length;
+                    renderPromoBanners();
+                }, 5000);
+            }
+        }
+
+        function nextBanner() {
+            currentBannerIndex = (currentBannerIndex + 1) % promoBanners.length;
+            renderPromoBanners();
+        }
+
+        function prevBanner() {
+            currentBannerIndex = (currentBannerIndex - 1 + promoBanners.length) % promoBanners.length;
+            renderPromoBanners();
+        }
+
+        function openOfferModal(id) {
+            const b = promoBanners.find(x => x.id === id) || promoBanners[currentBannerIndex];
+            if (!b) return;
+            document.getElementById('offerModalImage').src = b.image;
+            document.getElementById('offerModalTitleText').innerText = b.title || "Oferta Especial";
+            document.getElementById('offerDetailModal').classList.remove('hidden');
+        }
+
+        function closeOfferModal() {
+            document.getElementById('offerDetailModal').classList.add('hidden');
+        }
+
+        function interestInOffer() {
+            let activeTitle = "esta oferta";
+            if (promoBanners && promoBanners.length > 0 && promoBanners[currentBannerIndex]) {
+                activeTitle = promoBanners[currentBannerIndex].title || "oferta promocional";
+            }
+            const msg = `¡Hola *PC Best*! Estoy interesado en esta oferta: *${activeTitle}*. ¿Podrían darme más información y stock?`;
+            window.open(`https://wa.me/51910057512?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function interestInOfferFromModal() {
+            interestInOffer();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categoryContainer');
+            let html = `<button onclick="selectCategory('todos')" class="px-5 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition-all shadow-md ${currentCategory === 'todos' ? 'bg-sky-500 text-white shadow-sky-500/30' : 'bg-[#0b1329] border border-sky-950 text-slate-300 hover:bg-[#0f172a]'}">⚡ Todos</button>`;
+            
+            categories.forEach(cat => {
+                const isActive = currentCategory === cat;
+                const isOfertas = cat === 'Ofertas';
+                let btnClass = isActive 
+                    ? (isOfertas ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-amber-500/30' : 'bg-sky-500 text-white shadow-sky-500/30') 
+                    : (isOfertas ? 'bg-[#0b1329] border border-amber-500/40 text-amber-400 hover:bg-amber-500/10' : 'bg-[#0b1329] border border-sky-950 text-slate-300 hover:bg-[#0f172a]');
+                
+                let icon = isOfertas ? '<i class="fa-solid fa-fire mr-1 text-amber-400"></i> ' : '';
+                html += `<button onclick="selectCategory('${cat}')" class="px-5 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition-all shadow-md ${btnClass}">${icon}${cat}</button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderSubcategories() {
+            const subContainer = document.getElementById('subcategoryContainer');
+            if (currentCategory === 'todos' || !subcategories[currentCategory] || subcategories[currentCategory].length === 0) {
+                subContainer.classList.add('hidden');
+                currentSubcategory = 'todos';
+                return;
+            }
+
+            subContainer.classList.remove('hidden');
+            const subs = subcategories[currentCategory];
+            let html = `<span class="text-xs font-bold text-slate-400 mr-2 whitespace-nowrap"><i class="fa-solid fa-code-branch text-blue-400"></i> Subcategoría:</span>`;
+            html += `<button onclick="selectSubcategory('todos')" class="px-3.5 py-1.5 rounded-lg font-bold text-xs whitespace-nowrap transition-all ${currentSubcategory === 'todos' ? 'bg-blue-600 text-white' : 'bg-[#0b1329] text-slate-300 hover:bg-[#0f172a]'}">Todas</button>`;
+
+            subs.forEach(sub => {
+                const isActive = currentSubcategory === sub;
+                html += `<button onclick="selectSubcategory('${sub}')" class="px-3.5 py-1.5 rounded-lg font-bold text-xs whitespace-nowrap transition-all ${isActive ? 'bg-blue-600 text-white' : 'bg-[#0b1329] text-slate-300 hover:bg-[#0f172a]'}">${sub}</button>`;
+            });
+
+            subContainer.innerHTML = html;
+        }
+
+        function goToOffers(event) {
+            if (event) event.preventDefault();
+            currentBannerIndex = 0;
+            renderPromoBanners();
+            const promoSection = document.getElementById('promoBannerContainer');
+            if (promoSection) {
+                promoSection.classList.add('ring-2', 'ring-amber-400', 'ring-offset-2', 'ring-offset-[#030712]');
+                promoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    promoSection.classList.remove('ring-2', 'ring-amber-400', 'ring-offset-2', 'ring-offset-[#030712]');
+                }, 1800);
+            }
+        }
+
+        function goHome(event) {
+            if (event) event.preventDefault();
+            currentCategory = 'todos';
+            currentSubcategory = 'todos';
+            const search = document.getElementById('searchInput');
+            if (search) search.value = '';
+            renderCategories();
+            renderSubcategories();
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectCategory(cat) {
+            currentCategory = cat;
+            currentSubcategory = 'todos';
+            renderCategories();
+            renderSubcategories();
+            renderProducts();
+
+            // Al seleccionar Ofertas, mostrar y enfocar los banners promocionales.
+            if (cat === 'Ofertas') {
+                currentBannerIndex = 0;
+                renderPromoBanners();
+                const promoSection = document.getElementById('promoBannerContainer');
+                if (promoSection) {
+                    promoSection.classList.add('ring-2', 'ring-amber-400', 'ring-offset-2', 'ring-offset-[#030712]');
+                    promoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => {
+                        promoSection.classList.remove('ring-2', 'ring-amber-400', 'ring-offset-2', 'ring-offset-[#030712]');
+                    }, 1800);
+                }
+            }
+        }
+
+        function selectSubcategory(sub) {
+            currentSubcategory = sub;
+            renderSubcategories();
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const noResults = document.getElementById('noResults');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const counter = document.getElementById('productCounter');
+
+            let filtered = products.filter(p => {
+                const price = Number(p.price) || 0;
+                const matchCat = currentCategory === 'todos' || p.category === currentCategory;
+                const matchSub = currentSubcategory === 'todos' || p.subcategory === currentSubcategory;
+                const matchSearch = p.name.toLowerCase().includes(searchVal) || p.desc.toLowerCase().includes(searchVal);
+                const matchPrice = price >= priceFilterMin && price <= priceFilterMax;
+                return matchCat && matchSub && matchSearch && matchPrice;
+            });
+
+            if (productSort === 'priceAsc') {
+                filtered.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+            } else if (productSort === 'priceDesc') {
+                filtered.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+            }
+
+            counter.innerText = `Mostrando ${filtered.length} producto(s)`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+            noResults.classList.add('hidden');
+
+            let html = '';
+            filtered.forEach(p => {
+                const isOferta = p.category === 'Ofertas';
+                html += `
+                    <div class="bg-[#0b1329] border ${isOferta ? 'border-amber-500/50 shadow-amber-500/10' : 'border-sky-950'} rounded-3xl overflow-hidden shadow-xl hover:border-sky-500/50 transition-all flex flex-col group relative">
+                        ${isOferta ? '<div class="absolute top-3 left-3 z-10 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-lg shadow flex items-center gap-1"><i class="fa-solid fa-fire"></i> ¡OFERTA!</div>' : ''}
+                        <div class="relative h-48 bg-[#030712] overflow-hidden cursor-pointer" onclick="openDetailModal(${p.id})">
+                            <img src="${p.image || 'https://placehold.co/400x300/0b1329/38bdf8?text=PC+Peru'}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/0b1329/38bdf8?text=PC+Peru'">
+                            ${!isOferta ? `<span class="absolute top-3 left-3 bg-sky-500/95 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow">${p.category}</span>` : ''}
+                            ${p.subcategory ? `<span class="absolute top-3 right-3 ${isOferta ? 'bg-amber-600' : 'bg-blue-600'}/95 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow">${p.subcategory}</span>` : ''}
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 onclick="openDetailModal(${p.id})" class="font-bold text-base text-white hover:text-sky-400 cursor-pointer line-clamp-1">${p.name}</h3>
+                                <p class="text-xs text-slate-400 mt-1 line-clamp-2">${p.desc}</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-sky-950">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 block font-bold uppercase">Precio</span>
+                                    <span class="text-lg font-black ${isOferta ? 'text-amber-400' : 'text-sky-400'}">S/. ${p.price.toFixed(2)}</span>
+                                </div>
+                                <button onclick="addToCart(${p.id})" class="${isOferta ? 'bg-amber-500 hover:bg-amber-400 shadow-amber-500/30 text-slate-950' : 'bg-sky-500 hover:bg-sky-400 shadow-sky-500/30 text-white'} p-3 rounded-2xl shadow-lg transition-all">
+                                    <i class="fa-solid fa-cart-plus text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        function sortProducts() {
+            const select = document.getElementById('sortProducts');
+            productSort = select ? select.value : 'default';
+            renderProducts();
+        }
+
+        function initializePriceFilter() {
+            const prices = products.map(p => Number(p.price) || 0);
+            const maxPrice = Math.max(0, ...prices);
+            const roundedMax = Math.max(100, Math.ceil(maxPrice / 10) * 10);
+            const minInput = document.getElementById('priceMinInput');
+            const maxInput = document.getElementById('priceMaxInput');
+            const minRange = document.getElementById('priceMinRange');
+            const maxRange = document.getElementById('priceMaxRange');
+            if (!minInput || !maxInput || !minRange || !maxRange) return;
+            minRange.max = roundedMax; maxRange.max = roundedMax;
+            minInput.max = roundedMax; maxInput.max = roundedMax;
+            minInput.value = 0; maxInput.value = roundedMax;
+            minRange.value = 0; maxRange.value = roundedMax;
+            priceFilterMin = 0; priceFilterMax = roundedMax;
+            updatePriceLabels();
+        }
+
+        function updatePriceLabels() {
+            const minLabel = document.getElementById('priceRangeMinLabel');
+            const maxLabel = document.getElementById('priceRangeMaxLabel');
+            if (minLabel) minLabel.textContent = `S/. ${Number(priceFilterMin).toFixed(2)}`;
+            if (maxLabel) maxLabel.textContent = `S/. ${Number(priceFilterMax).toFixed(2)}`;
+        }
+
+        function syncPriceFromInputs(source) {
+            const minInput = document.getElementById('priceMinInput');
+            const maxInput = document.getElementById('priceMaxInput');
+            let min = Math.max(0, Number(minInput.value) || 0);
+            let max = Math.max(0, Number(maxInput.value) || 0);
+            if (source === 'min' && min > max) max = min;
+            if (source === 'max' && max < min) min = max;
+            priceFilterMin = min; priceFilterMax = max;
+            minInput.value = min; maxInput.value = max;
+            document.getElementById('priceMinRange').value = min;
+            document.getElementById('priceMaxRange').value = max;
+            updatePriceLabels(); renderProducts();
+        }
+
+        function syncPriceFromRange(source) {
+            const minRange = document.getElementById('priceMinRange');
+            const maxRange = document.getElementById('priceMaxRange');
+            let min = Number(minRange.value), max = Number(maxRange.value);
+            if (source === 'min' && min > max) { max = min; maxRange.value = max; }
+            if (source === 'max' && max < min) { min = max; minRange.value = min; }
+            priceFilterMin = min; priceFilterMax = max;
+            document.getElementById('priceMinInput').value = min;
+            document.getElementById('priceMaxInput').value = max;
+            updatePriceLabels(); renderProducts();
+        }
+
+        function setPricePreset(min, max) {
+            const maxAvailable = Number(document.getElementById('priceMaxRange')?.max || 1000);
+            const safeMax = Math.min(max, maxAvailable);
+            priceFilterMin = Math.max(0, min);
+            priceFilterMax = Math.max(priceFilterMin, safeMax);
+            document.getElementById('priceMinInput').value = priceFilterMin;
+            document.getElementById('priceMaxInput').value = priceFilterMax;
+            document.getElementById('priceMinRange').value = priceFilterMin;
+            document.getElementById('priceMaxRange').value = priceFilterMax;
+            updatePriceLabels();
+            renderProducts();
+        }
+
+        function resetPriceFilter() {
+            const maxValue = Number(document.getElementById('priceMaxRange')?.max || 1000);
+            priceFilterMin = 0; priceFilterMax = maxValue;
+            document.getElementById('priceMinInput').value = 0;
+            document.getElementById('priceMaxInput').value = maxValue;
+            document.getElementById('priceMinRange').value = 0;
+            document.getElementById('priceMaxRange').value = maxValue;
+            updatePriceLabels(); renderProducts();
+        }
+
+        function openDetailModal(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            document.getElementById('detailImage').src = p.image || 'https://placehold.co/600x400/0b1329/38bdf8?text=PC+Peru';
+            document.getElementById('detailCategory').innerText = p.category;
+            const subBadge = document.getElementById('detailSubcategory');
+            if (p.subcategory) {
+                subBadge.innerText = p.subcategory;
+                subBadge.classList.remove('hidden');
+            } else {
+                subBadge.classList.add('hidden');
+            }
+            document.getElementById('detailName').innerText = p.name;
+            document.getElementById('detailPrice').innerText = `S/. ${p.price.toFixed(2)}`;
+            document.getElementById('detailDesc').innerText = p.desc;
+            
+            const stockEl = document.getElementById('detailStock');
+            stockEl.innerText = `Stock: ${p.stock}`;
+            stockEl.className = p.stock > 0 ? 'text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400' : 'text-xs font-bold px-2.5 py-1 rounded-lg bg-red-500/20 text-red-400';
+
+            document.getElementById('detailAddBtn').setAttribute('onclick', `addToCart(${p.id}); closeDetailModal();`);
+            document.getElementById('productDetailModal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('productDetailModal').classList.add('hidden');
+        }
+
+        function addToCart(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            const existing = cart.find(x => x.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...p, qty: 1 });
+            }
+            renderCartCount();
+        }
+
+        function calculateCartTotals() {
+            const subtotal = cart.reduce((acc, item) => acc + (Number(item.price) * item.qty), 0);
+            let discount = 0;
+            let codeObj = null;
+            if (appliedDiscountCode) {
+                codeObj = discountCodes.find(x => String(x.code).toUpperCase() === appliedDiscountCode.toUpperCase() && x.active);
+                if (codeObj && subtotal >= (Number(codeObj.minAmount) || 0)) {
+                    discount = codeObj.type === 'percent' ? subtotal * (Number(codeObj.value) / 100) : Number(codeObj.value);
+                    discount = Math.min(discount, subtotal);
+                }
+            }
+            return { subtotal, discount, total: Math.max(0, subtotal - discount), codeObj };
+        }
+
+        function renderCartCount() {
+            const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+            const totals = calculateCartTotals();
+            document.getElementById('cartCount').innerText = totalCount;
+            document.getElementById('floatingCartTotal').innerText = `S/. ${totals.total.toFixed(2)} (${totalCount} ítems)`;
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            if (modal.classList.contains('hidden')) {
+                const input = document.getElementById('discountCodeInput');
+                if (input) input.value = appliedDiscountCode;
+                renderCartModalList();
+                modal.classList.remove('hidden');
+            } else { modal.classList.add('hidden'); }
+        }
+
+        function applyDiscountCode() {
+            const input = document.getElementById('discountCodeInput');
+            const message = document.getElementById('discountMessage');
+            const code = (input.value || '').trim().toUpperCase();
+            if (!code) { appliedDiscountCode = ''; appliedDiscountAmount = 0; message.textContent = 'Ingresa tu código y valida la promoción.'; message.className = 'text-[11px] mt-2 text-slate-500'; renderCartModalList(); renderCartCount(); return; }
+            const item = discountCodes.find(x => String(x.code).toUpperCase() === code && x.active);
+            const subtotal = cart.reduce((a, x) => a + Number(x.price) * x.qty, 0);
+            if (!item) { appliedDiscountCode = ''; appliedDiscountAmount = 0; message.textContent = 'Código inválido o inactivo.'; message.className = 'text-[11px] mt-2 text-red-400'; renderCartModalList(); renderCartCount(); return; }
+            const min = Number(item.minAmount) || 0;
+            if (subtotal < min) { appliedDiscountCode = ''; appliedDiscountAmount = 0; message.textContent = `Este código requiere una compra mínima de S/. ${min.toFixed(2)}.`; message.className = 'text-[11px] mt-2 text-amber-400'; renderCartModalList(); renderCartCount(); return; }
+            appliedDiscountCode = code;
+            const totals = calculateCartTotals();
+            appliedDiscountAmount = totals.discount;
+            message.textContent = `Código ${code} aplicado. Ahorras S/. ${totals.discount.toFixed(2)}.`;
+            message.className = 'text-[11px] mt-2 text-emerald-400';
+            renderCartModalList();
+            renderCartCount();
+        }
+
+        function renderCartModalList() {
+            const list = document.getElementById('cartItemList');
+            const totalVal = document.getElementById('cartTotalVal');
+            if (cart.length === 0) {
+                list.innerHTML = `<div class="text-center py-10 text-slate-500 text-xs">Tu cotización está vacía.</div>`;
+                document.getElementById('cartSubtotalVal').innerText = 'S/. 0.00';
+                document.getElementById('cartDiscountVal').innerText = '- S/. 0.00';
+                totalVal.innerText = 'S/. 0.00';
+                return;
+            }
+            let html = '';
+            cart.forEach((item, index) => {
+                html += `<div class="flex items-center justify-between bg-[#030712] p-3 rounded-2xl border border-sky-950 gap-3"><div class="flex-1"><h4 class="font-bold text-xs text-white">${item.name}</h4><p class="text-[10px] text-sky-400 font-bold">S/. ${Number(item.price).toFixed(2)} c/u</p></div><div class="flex items-center gap-2"><button onclick="updateQty(${index}, -1)" class="w-7 h-7 bg-[#0b1329] text-slate-300 rounded-lg hover:bg-[#0f172a] font-bold">-</button><span class="text-xs font-bold w-6 text-center">${item.qty}</span><button onclick="updateQty(${index}, 1)" class="w-7 h-7 bg-[#0b1329] text-slate-300 rounded-lg hover:bg-[#0f172a] font-bold">+</button><button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 p-2 text-xs"><i class="fa-solid fa-trash"></i></button></div></div>`;
+            });
+            list.innerHTML = html;
+            const totals = calculateCartTotals();
+            document.getElementById('cartSubtotalVal').innerText = `S/. ${totals.subtotal.toFixed(2)}`;
+            document.getElementById('cartDiscountVal').innerText = `- S/. ${totals.discount.toFixed(2)}`;
+            totalVal.innerText = `S/. ${totals.total.toFixed(2)}`;
+        }
+
+        function updateQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            renderCartModalList();
+            renderCartCount();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCartModalList();
+            renderCartCount();
+        }
+
+        function clearCart() {
+            cart = [];
+            appliedDiscountCode = '';
+            appliedDiscountAmount = 0;
+            renderCartModalList();
+            renderCartCount();
+        }
+
+        function sendToWhatsApp() {
+            if (cart.length === 0) return;
+            let msg = `Hola *PC Best*, solicito cotización de los siguientes componentes:%0A%0A`;
+            cart.forEach(item => {
+                const sub = item.price * item.qty;
+                msg += `• ${item.qty}x ${item.name} - S/. ${sub.toFixed(2)}%0A`;
+            });
+            const totals = calculateCartTotals();
+            msg += `%0A*Subtotal: S/. ${totals.subtotal.toFixed(2)}*`;
+            if (totals.discount > 0) msg += `%0A*Descuento (${encodeURIComponent(appliedDiscountCode)}): - S/. ${totals.discount.toFixed(2)}*`;
+            msg += `%0A*Total General: S/. ${totals.total.toFixed(2)}*%0A%0A¡Quedo atento para coordinar la entrega!`;
+            window.open(`https://wa.me/51910057512?text=${msg}`, '_blank');
+        }
+
+        function requestPin() {
+            document.getElementById('pinInput').value = '';
+            document.getElementById('pinError').classList.add('hidden');
+            document.getElementById('pinModal').classList.remove('hidden');
+        }
+
+        function closePinModal() {
+            document.getElementById('pinModal').classList.add('hidden');
+        }
+
+        function verifyPin() {
+            if (document.getElementById('pinInput').value === ADMIN_PIN) {
+                closePinModal();
+                openAdminPanel();
+            } else {
+                document.getElementById('pinError').classList.remove('hidden');
+            }
+        }
+
+        function switchAdminTab(tabName) {
+            const tabs = ['resumen','banners','nosotros','descuentos','categorias','productos','graficos'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById('adminTabBtn-' + tab);
+                const content = document.getElementById('adminTabContent-' + tab);
+                if (!btn || !content) return;
+                btn.classList.toggle('active', tab === tabName);
+                content.classList.toggle('hidden', tab !== tabName);
+            });
+            if (tabName === 'resumen') updateAdminSummary();
+            if (tabName === 'nosotros') loadAboutForm();
+            if (tabName === 'descuentos') renderAdminDiscounts();
+            if (tabName === 'graficos') renderAdminCharts();
+        }
+
+        function updateAdminSummary() {
+            const totalProducts = products.length;
+            const totalCategories = categories.length;
+            const totalStock = products.reduce((sum, p) => sum + (Number(p.stock) || 0), 0);
+            const lowStock = products.filter(p => Number(p.stock) <= 5).length;
+            ['statSummaryProducts','statTotalProducts'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=totalProducts; });
+            ['statSummaryCategories','statTotalCategories'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=totalCategories; });
+            ['statSummaryStock','statTotalStock'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=totalStock; });
+            const lowEl=document.getElementById('statSummaryLowStock'); if(lowEl) lowEl.textContent=lowStock;
+            const promoCount=document.getElementById('adminPromoCount'); if(promoCount) promoCount.textContent=promoBanners.length;
+            const catCount=document.getElementById('adminCategoryCount'); if(catCount) catCount.textContent=totalCategories;
+            const breakdown=document.getElementById('adminSummaryBreakdown');
+            if(breakdown){
+                breakdown.innerHTML = categories.map(cat => {
+                    const count=products.filter(p=>p.category===cat).length;
+                    const stock=products.filter(p=>p.category===cat).reduce((a,p)=>a+(Number(p.stock)||0),0);
+                    return `<div><div class="flex justify-between text-[11px] mb-1"><span class="text-slate-300 font-semibold">${cat}</span><span class="text-slate-500">${count} productos · ${stock} stock</span></div><div class="h-1.5 bg-[#0b1329] rounded-full overflow-hidden"><div class="h-full bg-sky-500 rounded-full" style="width:${totalProducts?Math.min(100,(count/totalProducts)*100):0}%"></div></div></div>`;
+                }).join('') || '<p class="text-xs text-slate-500">No hay categorías registradas.</p>';
+            }
+        }
+
+        function openAdminPanel() {
+            switchAdminTab('resumen');
+            renderAdminTopBarList();
+            renderAdminPromoList();
+            renderAdminDiscounts();
+            loadAboutForm();
+            renderAdminCategories();
+            renderAdminSubcategories();
+            renderAdminProductFilterTabs();
+            renderAdminProducts();
+            updateAdminSummary();
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+        }
+
+        function toggleAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+        }
+
+        function renderAdminTopBarList() {
+            const list = document.getElementById('adminTopBarList');
+            let html = '';
+            if (!topBarMessages || topBarMessages.length === 0) {
+                list.innerHTML = `<p class="text-xs text-slate-500">No hay barras informativas.</p>`;
+                return;
+            }
+            topBarMessages.forEach((msg, index) => {
+                html += `
+                    <div class="flex items-center justify-between bg-[#0b1329] p-3 rounded-xl border border-sky-950 gap-3">
+                        <span class="text-xs text-slate-200 font-semibold flex-1"><i class="fa-solid fa-bullhorn text-sky-400 mr-2"></i> ${msg}</span>
+                        <button onclick="deleteTopBarMessage(${index})" class="text-red-400 hover:text-red-300 p-2 text-xs"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            });
+            list.innerHTML = html;
+        }
+
+        function handleTopBarSubmit(e) {
+            e.preventDefault();
+            const text = document.getElementById('newTopBarText').value.trim();
+            if (text) {
+                topBarMessages.push(text);
+                document.getElementById('newTopBarText').value = '';
+                renderAdminTopBarList();
+                renderTopStoreBanner();
+            }
+        }
+
+        function deleteTopBarMessage(index) {
+            topBarMessages.splice(index, 1);
+            renderAdminTopBarList();
+            renderTopStoreBanner();
+        }
+
+        function renderAdminPromoList() {
+            const list = document.getElementById('adminPromoList');
+            let html = '';
+            if (!promoBanners || promoBanners.length === 0) {
+                list.innerHTML = `<div class="text-xs text-slate-500 sm:col-span-2 border border-dashed border-sky-950 rounded-xl p-6 text-center">No hay banners. Agrega tu primera oferta usando el formulario superior.</div>`;
+                return;
+            }
+            promoBanners.forEach(b => {
+                html += `<div class="bg-[#0b1329] rounded-2xl border border-sky-950 overflow-hidden"><div class="h-32 bg-[#030712]"><img src="${b.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x240/0b1329/38bdf8?text=Banner'" /></div><div class="p-3 flex items-center justify-between gap-3"><div><h5 class="text-xs font-bold text-white line-clamp-1">${b.title || 'Oferta promocional'}</h5><p class="text-[10px] text-slate-500 mt-1">ID #${b.id}</p></div><button onclick="deletePromoBanner(${b.id})" class="text-red-400 hover:text-red-300 p-2 text-xs"><i class="fa-solid fa-trash"></i></button></div></div>`;
+            });
+            list.innerHTML = html;
+        }
+
+        function handlePromoBannerSubmit(e) {
+            e.preventDefault();
+            const imgUrl = document.getElementById('newPromoImage').value.trim();
+            const title = document.getElementById('newPromoTitle').value.trim();
+            if (imgUrl) {
+                const newId = promoBanners.length > 0 ? Math.max(...promoBanners.map(x => x.id)) + 1 : 1;
+                promoBanners.push({ id: newId, image: imgUrl, title });
+                document.getElementById('newPromoImage').value = '';
+                document.getElementById('newPromoTitle').value = '';
+                renderAdminPromoList();
+                renderPromoBanners();
+            }
+        }
+
+        function deletePromoBanner(id) {
+            promoBanners = promoBanners.filter(x => x.id !== id);
+            renderAdminPromoList();
+            renderPromoBanners();
+        }
+
+        function loadAboutForm(){ const m={aboutBadge:aboutUs.badge,aboutTitle:aboutUs.title,aboutDescription:aboutUs.description,aboutFeature1Title:aboutUs.feature1Title,aboutFeature1Text:aboutUs.feature1Text,aboutFeature2Title:aboutUs.feature2Title,aboutFeature2Text:aboutUs.feature2Text,aboutButtonText:aboutUs.buttonText,aboutWhatsapp:aboutUs.whatsapp,aboutLocation:aboutUs.location,aboutImage:aboutUs.image,aboutSpecialistLabel:aboutUs.specialistLabel,aboutSpecialistText:aboutUs.specialistText}; Object.entries(m).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v||'';}); }
+        function renderAboutUs(){ const t=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v||'';}; t('aboutBadgeView',aboutUs.badge);t('aboutDescriptionView',aboutUs.description);t('aboutFeature1TitleView',aboutUs.feature1Title);t('aboutFeature1TextView',aboutUs.feature1Text);t('aboutFeature2TitleView',aboutUs.feature2Title);t('aboutFeature2TextView',aboutUs.feature2Text);t('aboutButtonTextView',aboutUs.buttonText);t('aboutLocationView',aboutUs.location);t('aboutSpecialistLabelView',aboutUs.specialistLabel);t('aboutSpecialistTextView',aboutUs.specialistText); const img=document.getElementById('aboutUsImage');if(img){img.src=aboutUs.image||'https://placehold.co/900x500/0b1329/38bdf8?text=PC+Peru';} const link=document.getElementById('aboutWhatsappLink');if(link)link.href=`https://wa.me/${String(aboutUs.whatsapp||'').replace(/\D/g,'')}`; }
+        function handleAboutSubmit(e){ e.preventDefault(); const g=id=>(document.getElementById(id)?.value||'').trim(); aboutUs={badge:g('aboutBadge'),title:g('aboutTitle'),description:g('aboutDescription'),feature1Title:g('aboutFeature1Title'),feature1Text:g('aboutFeature1Text'),feature2Title:g('aboutFeature2Title'),feature2Text:g('aboutFeature2Text'),buttonText:g('aboutButtonText'),whatsapp:g('aboutWhatsapp').replace(/\D/g,''),location:g('aboutLocation'),image:g('aboutImage'),specialistLabel:g('aboutSpecialistLabel'),specialistText:g('aboutSpecialistText')}; renderAboutUs(); }
+
+        function renderAdminDiscounts() {
+            const list = document.getElementById('adminDiscountList');
+            const count = document.getElementById('adminDiscountCount');
+            if (!list) return;
+            count.textContent = discountCodes.length;
+            if (!discountCodes.length) { list.innerHTML = `<div class="lg:col-span-2 text-center py-10 border border-dashed border-sky-950 rounded-2xl text-xs text-slate-500">No hay códigos creados.</div>`; return; }
+            list.innerHTML = discountCodes.map(d => {
+                const value = d.type === 'percent' ? `${Number(d.value)}%` : `S/. ${Number(d.value).toFixed(2)}`;
+                const min = Number(d.minAmount) || 0;
+                return `<div class="bg-[#030712] border border-sky-950 rounded-2xl p-4 flex items-center justify-between gap-4"><div><div class="flex items-center gap-2"><span class="font-black text-amber-400 tracking-wider">${d.code}</span><span class="text-[10px] px-2 py-1 rounded-full ${d.active ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-400'}">${d.active ? 'Activo' : 'Inactivo'}</span></div><p class="text-xs text-slate-300 mt-2">Descuento: <strong>${value}</strong></p><p class="text-[10px] text-slate-500 mt-1">Compra mínima: S/. ${min.toFixed(2)}${d.expiresAt ? ` · Vence: ${d.expiresAt}` : ''}</p></div><div class="flex gap-2"><button onclick="toggleDiscount(${d.id})" class="bg-[#0b1329] text-slate-300 hover:text-emerald-400 p-2.5 rounded-xl" title="Activar/desactivar"><i class="fa-solid fa-power-off"></i></button><button onclick="deleteDiscount(${d.id})" class="bg-[#0b1329] text-red-400 hover:text-red-300 p-2.5 rounded-xl" title="Eliminar"><i class="fa-solid fa-trash"></i></button></div></div>`;
+            }).join('');
+        }
+
+        function handleDiscountSubmit(e) {
+            e.preventDefault();
+            const code = document.getElementById('newDiscountCode').value.trim().toUpperCase();
+            const type = document.getElementById('newDiscountType').value;
+            const value = Number(document.getElementById('newDiscountValue').value);
+            const minAmount = Number(document.getElementById('newDiscountMin').value) || 0;
+            if (!code || value <= 0 || discountCodes.some(x => String(x.code).toUpperCase() === code)) { alert('Verifica el código y asegúrate de que no esté repetido.'); return; }
+            if (type === 'percent' && value > 100) { alert('El porcentaje no puede superar 100%.'); return; }
+            const id = discountCodes.length ? Math.max(...discountCodes.map(x => x.id)) + 1 : 1;
+            discountCodes.push({ id, code, type, value, minAmount, active: true, expiresAt: '' });
+            e.target.reset();
+            document.getElementById('newDiscountMin').value = 0;
+            renderAdminDiscounts();
+        }
+
+        function toggleDiscount(id) {
+            const d = discountCodes.find(x => x.id === id);
+            if (d) d.active = !d.active;
+            if (appliedDiscountCode && d && d.code === appliedDiscountCode && !d.active) { appliedDiscountCode = ''; appliedDiscountAmount = 0; }
+            renderAdminDiscounts();
+            renderCartCount();
+        }
+
+        function deleteDiscount(id) {
+            const d = discountCodes.find(x => x.id === id);
+            if (d && confirm(`¿Eliminar el código ${d.code}?`)) {
+                discountCodes = discountCodes.filter(x => x.id !== id);
+                if (appliedDiscountCode === d.code) { appliedDiscountCode = ''; appliedDiscountAmount = 0; }
+                renderAdminDiscounts();
+                renderCartCount();
+            }
+        }
+
+        function renderAdminCategories() {
+            const list = document.getElementById('adminCategoryList');
+            const parentSelect = document.getElementById('subCatParentSelect');
+            let html = '';
+            let selectHtml = `<option value="">Seleccionar Categoría Principal...</option>`;
+            categories.forEach(cat => {
+                const count = products.filter(p => p.category === cat).length;
+                const subs = (subcategories[cat] || []).length;
+                html += `<div class="bg-[#0b1329] border border-sky-950 p-4 rounded-2xl"><div class="flex items-start justify-between gap-3"><div><h5 class="text-xs font-extrabold text-white">${cat}</h5><p class="text-[10px] text-slate-500 mt-1">${count} productos · ${subs} subcategorías</p></div><button onclick="deleteCategory('${cat.replace(/'/g,"\\'")}')" class="text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash"></i></button></div></div>`;
+                selectHtml += `<option value="${cat}">${cat}</option>`;
+            });
+            list.innerHTML = html || `<p class="text-xs text-slate-500 col-span-full">No hay categorías registradas.</p>`;
+            parentSelect.innerHTML = selectHtml;
+        }
+
+        function renderAdminSubcategories() {
+            const list = document.getElementById('adminSubcategoryList');
+            let html = '';
+            for (const [cat, subs] of Object.entries(subcategories)) {
+                html += `<div class="bg-[#0b1329] p-3 rounded-xl border border-sky-950 space-y-2"><h5 class="text-xs font-extrabold text-sky-400">${cat}</h5><div class="flex flex-wrap gap-2">`;
+                if (!subs || subs.length === 0) {
+                    html += `<span class="text-[10px] text-slate-500">Sin subcategorías.</span>`;
+                } else {
+                    subs.forEach(sub => {
+                        html += `<span class="bg-[#030712] border border-sky-950 px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-300 flex items-center gap-1.5">${sub}<button onclick="deleteSubcategory('${cat}', '${sub}')" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-xmark"></i></button></span>`;
+                    });
+                }
+                html += `</div></div>`;
+            }
+            list.innerHTML = html;
+        }
+
+        function handleCategorySubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('newCategoryName').value.trim();
+            if (name && !categories.includes(name)) {
+                categories.push(name);
+                if (!subcategories[name]) subcategories[name] = [];
+                document.getElementById('newCategoryName').value = '';
+                renderAdminCategories();
+                renderAdminSubcategories();
+            }
+        }
+
+        function deleteCategory(cat) {
+            if (confirm(`¿Eliminar ${cat}?`)) {
+                categories = categories.filter(c => c !== cat);
+                delete subcategories[cat];
+                renderAdminCategories();
+                renderAdminSubcategories();
+            }
+        }
+
+        function handleSubcategorySubmit(e) {
+            e.preventDefault();
+            const parent = document.getElementById('subCatParentSelect').value;
+            const subName = document.getElementById('newSubcategoryName').value.trim();
+            if (parent && subName) {
+                if (!subcategories[parent]) subcategories[parent] = [];
+                if (!subcategories[parent].includes(subName)) {
+                    subcategories[parent].push(subName);
+                    document.getElementById('newSubcategoryName').value = '';
+                    renderAdminSubcategories();
+                }
+            }
+        }
+
+        function deleteSubcategory(cat, sub) {
+            if (subcategories[cat]) {
+                subcategories[cat] = subcategories[cat].filter(s => s !== sub);
+                renderAdminSubcategories();
+            }
+        }
+
+        function renderAdminProductFilterTabs() {
+            const container = document.getElementById('adminCategoryFilterTabs');
+            let html = `<button onclick="setAdminFilter('todos')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${currentAdminCategory === 'todos' ? 'bg-sky-500 text-white' : 'bg-[#0b1329] text-slate-300'}">Todos</button>`;
+            categories.forEach(cat => {
+                html += `<button onclick="setAdminFilter('${cat}')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${currentAdminCategory === cat ? 'bg-sky-500 text-white' : 'bg-[#0b1329] text-slate-300'}">${cat}</button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function setAdminFilter(cat) {
+            currentAdminCategory = cat;
+            renderAdminProductFilterTabs();
+            renderAdminProducts();
+        }
+
+        function renderAdminProducts() {
+            const list = document.getElementById('adminProductList');
+            const search = (document.getElementById('adminProductSearch')?.value || '').toLowerCase().trim();
+            const stockFilter = document.getElementById('adminStockFilter')?.value || 'todos';
+            let filtered = currentAdminCategory === 'todos' ? [...products] : products.filter(p => p.category === currentAdminCategory);
+            if (search) filtered = filtered.filter(p => `${p.name} ${p.category} ${p.subcategory || ''}`.toLowerCase().includes(search));
+            if (stockFilter === 'bajo') filtered = filtered.filter(p => Number(p.stock) > 0 && Number(p.stock) <= 5);
+            if (stockFilter === 'agotado') filtered = filtered.filter(p => Number(p.stock) <= 0);
+            const countEl=document.getElementById('adminProductCount'); if(countEl) countEl.textContent=`${filtered.length} de ${products.length} productos`;
+            let html = '';
+            filtered.forEach(p => {
+                const stock=Number(p.stock)||0;
+                const stockClass=stock<=0?'text-red-400':stock<=5?'text-amber-400':'text-emerald-400';
+                html += `<div class="flex items-center justify-between bg-[#030712] p-4 rounded-2xl border border-sky-950 gap-4 hover:border-sky-800 transition-colors"><div class="flex items-center gap-3 min-w-0"><img src="${p.image || 'https://placehold.co/100x100/0b1329/38bdf8?text=PC'}" class="w-14 h-14 object-cover rounded-xl shrink-0" onerror="this.src='https://placehold.co/100x100/0b1329/38bdf8?text=PC'"><div class="min-w-0"><h4 class="font-bold text-xs text-white truncate">${p.name}</h4><p class="text-[10px] text-slate-400 mt-1">${p.category}${p.subcategory ? ' › ' + p.subcategory : ''}</p><p class="text-[11px] mt-1"><span class="text-sky-400 font-bold">S/. ${Number(p.price).toFixed(2)}</span><span class="text-slate-600 mx-1">•</span><span class="${stockClass} font-bold">Stock: ${stock}</span></p></div></div><div class="flex gap-2 shrink-0"><button onclick="openProductForm(${p.id})" class="bg-[#0b1329] hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 p-2.5 rounded-xl text-xs"><i class="fa-solid fa-pen"></i></button><button onclick="deleteProduct(${p.id})" class="bg-[#0b1329] hover:bg-red-500/10 text-red-400 p-2.5 rounded-xl text-xs"><i class="fa-solid fa-trash"></i></button></div></div>`;
+            });
+            list.innerHTML = html || `<div class="text-center py-10 border border-dashed border-sky-950 rounded-2xl"><i class="fa-solid fa-box-open text-2xl text-slate-700"></i><p class="text-xs text-slate-500 mt-2">No se encontraron productos con estos filtros.</p></div>`;
+        }
+
+        function renderAdminCharts() {
+            document.getElementById('statTotalProducts').innerText = products.length;
+            document.getElementById('statTotalCategories').innerText = categories.length;
+            const totalStockCount = products.reduce((acc, p) => acc + (parseInt(p.stock) || 0), 0);
+            document.getElementById('statTotalStock').innerText = totalStockCount;
+
+            const catCounts = {};
+            const stockCounts = {};
+            categories.forEach(c => {
+                catCounts[c] = 0;
+                stockCounts[c] = 0;
+            });
+
+            products.forEach(p => {
+                if (catCounts[p.category] !== undefined) {
+                    catCounts[p.category]++;
+                    stockCounts[p.category] += (parseInt(p.stock) || 0);
+                } else {
+                    catCounts[p.category] = 1;
+                    stockCounts[p.category] = (parseInt(p.stock) || 0);
+                }
+            });
+
+            const labels = Object.keys(catCounts);
+            const dataProd = Object.values(catCounts);
+            const dataStock = Object.values(stockCounts);
+
+            const palette = ['#38bdf8', '#3b82f6', '#6366f1', '#a855f7', '#ec4899', '#f59e0b', '#10b981', '#14b8a6'];
+
+            if (categoryChartInstance) categoryChartInstance.destroy();
+            const ctxPie = document.getElementById('categoryChart').getContext('2d');
+            categoryChartInstance = new Chart(ctxPie, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: dataProd,
+                        backgroundColor: palette.slice(0, labels.length),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#94a3b8', font: { size: 10, family: 'Plus Jakarta Sans' } }
+                        }
+                    }
+                }
+            });
+
+            if (stockChartInstance) stockChartInstance.destroy();
+            const ctxBar = document.getElementById('stockChart').getContext('2d');
+            stockChartInstance = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Stock',
+                        data: dataStock,
+                        backgroundColor: '#38bdf8',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+                        y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: 'rgba(56, 189, 248, 0.1)' } }
+                    }
+                }
+            });
+        }
+
+        function openProductForm(id = null) {
+            const catSelect = document.getElementById('prodCategory');
+            let html = '';
+            categories.forEach(cat => { html += `<option value="${cat}">${cat}</option>`; });
+            catSelect.innerHTML = html;
+
+            if (id) {
+                const p = products.find(x => x.id === id);
+                document.getElementById('formModalTitle').innerText = 'Editar Producto';
+                document.getElementById('editProductId').value = p.id;
+                document.getElementById('prodName').value = p.name;
+                document.getElementById('prodCategory').value = p.category;
+                updateSubcategoryDropdownOptions(p.subcategory);
+                document.getElementById('prodPrice').value = p.price;
+                document.getElementById('prodStock').value = p.stock;
+                document.getElementById('prodImage').value = p.image || '';
+                document.getElementById('prodDesc').value = p.desc;
+            } else {
+                document.getElementById('formModalTitle').innerText = 'Nuevo Producto';
+                document.getElementById('editProductId').value = '';
+                document.getElementById('productForm').reset();
+                updateSubcategoryDropdownOptions();
+            }
+            document.getElementById('productFormModal').classList.remove('hidden');
+        }
+
+        function updateSubcategoryDropdownOptions(selectedSub = '') {
+            const cat = document.getElementById('prodCategory').value;
+            const subSelect = document.getElementById('prodSubcategory');
+            let html = `<option value="">-- Sin subcategoría --</option>`;
+            if (subcategories[cat] && subcategories[cat].length > 0) {
+                subcategories[cat].forEach(sub => {
+                    const sel = sub === selectedSub ? 'selected' : '';
+                    html += `<option value="${sub}" ${sel}>${sub}</option>`;
+                });
+            }
+            subSelect.innerHTML = html;
+        }
+
+        function closeProductForm() {
+            document.getElementById('productFormModal').classList.add('hidden');
+        }
+
+        function handleProductFormSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('editProductId').value;
+            const name = document.getElementById('prodName').value.trim();
+            const category = document.getElementById('prodCategory').value;
+            const subcategory = document.getElementById('prodSubcategory').value;
+            const price = parseFloat(document.getElementById('prodPrice').value);
+            const stock = parseInt(document.getElementById('prodStock').value);
+            const image = document.getElementById('prodImage').value.trim();
+            const desc = document.getElementById('prodDesc').value.trim();
+
+            if (id) {
+                const p = products.find(x => x.id == id);
+                if (p) {
+                    p.name = name;
+                    p.category = category;
+                    p.subcategory = subcategory;
+                    p.price = price;
+                    p.stock = stock;
+                    p.image = image;
+                    p.desc = desc;
+                }
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(x => x.id)) + 1 : 1;
+                products.push({ id: newId, name, category, subcategory, price, stock, image, desc });
+            }
+
+            closeProductForm();
+            renderAdminProducts();
+            renderAll();
+        }
+
+        function deleteProduct(id) {
+            if (confirm('¿Eliminar producto?')) {
+                products = products.filter(x => x.id !== id);
+                renderAdminProducts();
+                renderAll();
+            }
+        }
+
+        async function saveAdminChanges() {
+            await saveToCloud();
+            const msg = document.getElementById('adminStatusMsg');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+                toggleAdminPanel();
+            }, 1200);
+            renderAll();
+        }
+
+        function downloadPDFCatalog() {
+            window.print();
+        }
+
+        function checkCookiesConsent() {
+            if (!localStorage.getItem('pcperu_cookies')) {
+                document.getElementById('cookieConsentBanner').classList.remove('hidden');
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('pcperu_cookies', 'accepted');
+            document.getElementById('cookieConsentBanner').classList.add('hidden');
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('pcperu_cookies', 'rejected');
+            document.getElementById('cookieConsentBanner').classList.add('hidden');
+        }
+
+        window.onload = function() {
+            loadFromCloud();
+            checkCookiesConsent();
+        };
+    </script>
+</body>
+</html>
